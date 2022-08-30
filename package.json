@@ -1,0 +1,40 @@
+{
+  "dependencies": {
+    "@types/node": "^18.7.14",
+    "class-validator": "^0.13.2",
+    "express": "^4.18.1",
+    "inversify": "^6.0.1",
+    "inversify-express-utils": "^6.4.3",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^4.8.2",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {},
+  "name": "00academy",
+  "description": "backend typescript escola de cursos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:dev": "node dist/app-test.js",
+    "start": "tsc && node dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joneco02/00academy.git"
+  },
+  "keywords": [
+    "joneco",
+    "cursos",
+    "lessons",
+    "courses",
+    "academy",
+    "learning"
+  ],
+  "author": "joneco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joneco02/00academy/issues"
+  },
+  "homepage": "https://github.com/joneco02/00academy#readme"
+}
