@@ -1,9 +1,9 @@
-import express from 'express';
-import 'dotenv/config';
+import express from "express";
+import "dotenv/config";
 
-import routes from './routes';
+import routes from "./routes";
 
-class App {
+export class App {
   public express: express.Application;
 
   public constructor() {
