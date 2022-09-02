@@ -9,10 +9,10 @@ export namespace UpdateCourseDto {
   export class Body {
     @IsString()
     @IsNotEmpty()
-    descricao: string;
+    descricao?: string;
 
     @IsString()
     @IsNotEmpty()
-    status: string;
+    status?: string;
   }
 }

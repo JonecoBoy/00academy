@@ -22,11 +22,7 @@ export class CriaCourseUseCase implements CreateCourseInterface {
 
   execute(model: CriaCourseUseCaseParams): CourseEntity {
     
-    // const CourseFromDb = this._CourseRepository.search({
-    //   descricao: model.descricao,
-    // });
 
-    // if (!CourseFromDb) throw new Error(``);
 
 
     const result = this._CourseRepository.create({

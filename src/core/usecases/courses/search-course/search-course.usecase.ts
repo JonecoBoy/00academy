@@ -1,12 +1,16 @@
 import "reflect-metadata";
 import { inject, injectable } from "inversify";
-import { ListCoursesInterface } from "./list-course.interface";
+import {
+  SearchCourseInterface,
+  SearchCourseUseCaseParams,
+} from "./search-course.interface";
+import { CourseEntity } from "@core/entities/course.entity";
 import { BusinessError } from "../../../errors/business.error";
 import { CourseRepositoryInterface } from "@core/providers/courses-repository.interface";
 import TYPES from "../../../../types";
 
 @injectable()
-export class ListaCoursesUseCase implements ListCoursesInterface {
+export class SearchCourseUseCase implements SearchCourseInterface {
   private _CourseRepository: CourseRepositoryInterface;
 
   constructor(
@@ -16,10 +20,9 @@ export class ListaCoursesUseCase implements ListCoursesInterface {
     this._CourseRepository = CourseRepository;
   }
   
-  execute(filter: any): any[] {
+  execute(model: SearchCourseUseCaseParams): any {
 
-    const result = this._CourseRepository.list({
-    });
+    const result = this._CourseRepository.search(model);
 
   return result;
   }

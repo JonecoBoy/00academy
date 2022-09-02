@@ -8,19 +8,24 @@ import { InversifyExpressServer } from "inversify-express-utils";
 import TYPES from "./types";
 
 import "./presentation/controllers/courses.controller";
-// import "./presentation/controllers/app.controller";
 
-import { testControllerFactory } from "./presentation/controllers/testmiddleware.controller";
+import { baseController } from "./presentation/controllers/base.controller";
 import { CustomMiddleware } from "./presentation/middlewares/custom.middleware";
 
-import { ListaCursoInterface } from "./core/usecases/courses/list-courses/list-course.interface";
+import { ListCoursesInterface } from "./core/usecases/courses/list-courses/list-course.interface";
 import { ListaCoursesUseCase } from "./core/usecases/courses/list-courses/list-course.usecase";
 
-import { CriaCursoInterface } from "./core/usecases/courses/create-course/create-course.interface";
-import { CriaCursoUseCase } from "./core/usecases/courses/create-course/create-course.usecase";
+import { CreateCourseInterface } from "./core/usecases/courses/create-course/create-course.interface";
+import { CriaCourseUseCase } from "./core/usecases/courses/create-course/create-course.usecase";
 
-import { CursoRepositoryInterface } from "./core/providers/courses-repository.interface";
-import { CursoRepository } from "./infra/repositories/courses.repository";
+import { SearchCourseInterface } from "./core/usecases/courses/search-course/search-course.interface";
+import { SearchCourseUseCase } from "./core/usecases/courses/search-course/search-course.usecase";
+
+import { UpdateCourseInterface } from "./core/usecases/courses/update-course/update-course.interface";
+import { UpdateCourseUseCase } from "./core/usecases/courses/update-course/update-course.usecase";
+
+import { CourseRepositoryInterface } from "./core/providers/courses-repository.interface";
+import { CourseRepository } from "./infra/repositories/courses.repository";
 
 const PORT = process.env.PORT || 3001;
 
@@ -34,19 +39,25 @@ export class App {
 
   configDependencies(): void {
     container
-      .bind<ListaCursoInterface>(TYPES.ListaCursoInterface)
+      .bind<ListCoursesInterface>(TYPES.ListCoursesInterface)
       .to(ListaCoursesUseCase);
     container
-      .bind<CriaCursoInterface>(TYPES.CriaCursoInterface)
-      .to(CriaCursoUseCase);
+      .bind<CreateCourseInterface>(TYPES.CreateCourseInterface)
+      .to(CriaCourseUseCase);
     container
-      .bind<CursoRepositoryInterface>(TYPES.CursoRepositoryInterface)
-      .to(CursoRepository);
+    .bind<SearchCourseInterface>(TYPES.SearchCourseInterface)
+    .to(SearchCourseUseCase);
+    container
+    .bind<UpdateCourseInterface>(TYPES.UpdateCourseInterface)
+    .to(UpdateCourseUseCase);
+  container
+      .bind<CourseRepositoryInterface>(TYPES.CourseRepositoryInterface)
+      .to(CourseRepository);
     container
       .bind<express.RequestHandler>(TYPES.CustomMiddleware)
       .toConstantValue(CustomMiddleware);
 
-    testControllerFactory(container);
+    baseController(container);
   }
 
   createService(): void {

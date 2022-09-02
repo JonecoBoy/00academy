@@ -10,14 +10,21 @@ import {
   httpPost,
   requestBody,
   httpPut,
+  results,
+  params,
 } from "inversify-express-utils";
 import TYPES from "../../types";
 
-import { ListaCursoInterface } from "../../core/usecases/courses/list-courses/list-course.interface";
+import { ListCoursesInterface } from "../../core/usecases/courses/list-courses/list-course.interface";
 import { ListCourseDto } from "../../presentation/dtos/courses/list-courses.dto";
+
 import { CreateCourseDto } from "../../presentation/dtos/courses/create-course.dto";
-import { CriaCursoInterface } from "../../core/usecases/courses/create-course/create-course.interface";
-// import { validate } from "class-validator";
+import { CreateCourseInterface } from "../../core/usecases/courses/create-course/create-course.interface";
+
+import { SearchCourseInterface } from "@core/usecases/courses/search-course/search-course.interface";
+import { SearchCourseDto } from "@presentation/dtos/courses/search-course.dto";
+
+import { UpdateCourseInterface } from "@core/usecases/courses/update-course/update-course.interface";
 import { UpdateCourseDto } from "../../presentation/dtos/courses/update-course.dto";
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
@@ -27,50 +34,53 @@ export class CoursesController
   extends BaseHttpController
   implements interfaces.Controller
 {
-  private _listCourseservice: ListaCursoInterface;
-  private _criaCourseservice: CriaCursoInterface;
+  private _listCourseservice: ListCoursesInterface;
+  private _createCourseervice: CreateCourseInterface;
+  private _searchCourseService: SearchCourseInterface;
+  private _updateCourseService: UpdateCourseInterface;
 
   constructor(
-    @inject(TYPES.ListaCursoInterface) listaCursoUseCase: ListaCursoInterface,
-    @inject(TYPES.CriaCursoInterface) criaCursoUseCase: CriaCursoInterface
+    @inject(TYPES.ListCoursesInterface) listCourseUseCase: ListCoursesInterface,
+    @inject(TYPES.CreateCourseInterface) createCourseUseCase: CreateCourseInterface,
+    @inject(TYPES.SearchCourseInterface) searchCourseUseCase: SearchCourseInterface,
+    @inject(TYPES.UpdateCourseInterface) updateCourseUseCase: UpdateCourseInterface
   ) {
     super();
-    this._listCourseservice = listaCursoUseCase;
-    this._criaCourseservice = criaCursoUseCase;
+    this._listCourseservice = listCourseUseCase;
+    this._createCourseervice = createCourseUseCase;
+    this._searchCourseService = searchCourseUseCase;
+    this._updateCourseService = updateCourseUseCase;
   }
 
+
+  //listar todos os cursos disponíveis
   @httpGet(`/`)
-  public async lista(
+  public async listAllCourses(
     @queryParam() query: ListCourseDto.Query
   ): Promise<interfaces.IHttpActionResult> {
-    // todo:recuperar dados da request
-    console.log(query);
 
-    // todo: invocar usecase
-    const resultado: any[] = this._listCourseservice.execute({});
 
-    return this.json(resultado);
+    const result: any[] = this._listCourseservice.execute({});
+
+    if (!result){
+      return this.json({
+        message: 'Courses List is Empty'
+      })
+    }
+
+    return this.json(result);
   }
 
+  //listar um curso apenas
   @httpGet(`/:id`)
-  public async buscaPorId(
-    @requestParam(`id`) id: string
+  public async getCourseById(
+    @requestParam(`id`) id: number
   ): Promise<interfaces.IHttpActionResult> {
     try {
-      // todo:recuperar dados da request
-      console.log(id);
 
-      // todo:validar os dados recuperados
+      const result = this._searchCourseService.execute({id});
 
-      // todo:construir payload do usecase
-
-      // todo: invocar usecase
-
-      return this.json({
-        id: 1,
-        descricao: `teste curso 1`,
-        status: `inativo`,
-      });
+      return this.json(result);
     } catch (error) {
       if (error.name === `BusinessError`) {
         return this.badRequest(error.message);
@@ -80,42 +90,42 @@ export class CoursesController
     }
   }
 
+  //criar um curso
   @httpPost(`/`, ValidateDtoMiddleware(CreateCourseDto.Body, `body`))
-  public async cria(
+  public async createCourse(
     @requestBody() body: CreateCourseDto.Body
   ): Promise<interfaces.IHttpActionResult> {
-    // //todo: recolher do contexto
-    // console.log(body);
-
-    // todo: invocar camada de negócio
-    const result = this._criaCourseservice.execute({
+    const result = this._createCourseervice.execute({
       dataInicio: body.dataInicio,
       descricao: body.descricao,
     });
 
-    // todo: montar saida conforme definicao no dto do presentation
     return this.json(result);
   }
 
+    //editar um curso
   @httpPut(
     `/:id`,
     ValidateDtoMiddleware(UpdateCourseDto.Params, `params`),
     ValidateDtoMiddleware(UpdateCourseDto.Body, `body`)
   )
-  public async altera(
-    @requestParam(`:id`) params: string,
+  public async update(
+    @requestParam(`id`) id: number,
     @requestBody() body: UpdateCourseDto.Body
   ): Promise<interfaces.IHttpActionResult> {
-    console.log(params);
-    console.log(body);
+    try{
+      const descricao = body.descricao;
+      const status = body.status;
+      const result = this._updateCourseService.execute({id,descricao,status});
 
-    return this.json({
-      mensagem: `sucesso`,
-      data: {
-        id: `string`,
-        descricao: `string`,
-        status: `ativo`,
-      },
-    });
+    }
+    catch (error) {
+      if (error.name === `BusinessError`) {
+        return this.badRequest(error.message);
+      }
+
+      return this.internalServerError(error.message);
+    }
+
   }
 }

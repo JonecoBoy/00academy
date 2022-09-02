@@ -4,8 +4,8 @@ export class CourseEntity {
   public dataInicio: string;
   public status: string;
 
-  constructor(cursoId: number, descricao: string, dataInicio: string) {
-    this.id = cursoId;
+  constructor(CourseId: number, descricao: string, dataInicio: string) {
+    this.id = CourseId;
     this.descricao = descricao;
     this.dataInicio = dataInicio;
     this.status = this.getCoursestatus();
@@ -16,10 +16,10 @@ export class CourseEntity {
   }
 
   static build(
-    cursoId: number,
+    CourseId: number,
     descricao: string,
     dataInicio: string
   ): CourseEntity {
-    return new CourseEntity(cursoId, descricao, dataInicio);
+    return new CourseEntity(CourseId, descricao, dataInicio);
   }
 }

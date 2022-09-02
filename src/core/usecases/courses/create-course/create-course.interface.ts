@@ -1,10 +1,10 @@
 import { CourseEntity } from "@core/entities/course.entity";
 
-export class CriaCursoUseCaseParams {
+export class CriaCourseUseCaseParams {
   descricao: string;
   dataInicio: string;
 }
 
-export interface CriaCursoInterface {
-  execute(model: CriaCursoUseCaseParams): CourseEntity;
+export interface CreateCourseInterface {
+  execute(model: CriaCourseUseCaseParams): CourseEntity;
 }

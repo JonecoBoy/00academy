@@ -1,3 +1,3 @@
-export interface ListaCursoInterface {
+export interface ListCoursesInterface {
   execute(filter: any): any[];
 }

@@ -1,16 +1,23 @@
 import { CourseEntity } from "../entities/course.entity";
 
-export type CursoRespositorySearchParams = {
-  descricao?: string;
+export type CourseRespositorySearchParams = {
+  id?: number;
 };
 
-export type CursoRespositoryCreateParams = {
+export type CourseRespositoryCreateParams = {
   dataInicio: string;
   descricao: string;
 };
 
-export interface CursoRepositoryInterface {
-  search(model: CursoRespositorySearchParams): CourseEntity[];
+export type CourseRespositoryUpdateParams = {
+  id:number;
+  descricao?: string;
+  status?: string;
+};
 
-  create(model: CursoRespositoryCreateParams): CourseEntity;
+export interface CourseRepositoryInterface {
+  list(model: CourseRespositorySearchParams): CourseEntity[];
+  search(model: CourseRespositorySearchParams): CourseEntity;
+  create(model: CourseRespositoryCreateParams): CourseEntity;
+  update(model: CourseRespositoryUpdateParams): CourseEntity;
 }
