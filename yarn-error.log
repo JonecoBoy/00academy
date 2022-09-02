@@ -37,7 +37,7 @@ npm manifest:
       "typescript": "^4.8.2"
     },
     "name": "00academy",
-    "description": "backend typescript escola de cursos",
+    "description": "backend typescript escola de Courses",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
@@ -50,7 +50,7 @@ npm manifest:
     },
     "keywords": [
       "joneco",
-      "cursos",
+      "Courses",
       "lessons",
       "courses",
       "academy",

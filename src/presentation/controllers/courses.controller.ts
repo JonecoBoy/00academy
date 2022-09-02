@@ -22,21 +22,21 @@ import { UpdateCourseDto } from "../../presentation/dtos/courses/update-course.d
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 
-@controller(`/cursos`)
-export class CursosController
+@controller(`/courses`)
+export class CoursesController
   extends BaseHttpController
   implements interfaces.Controller
 {
-  private _listCursoService: ListaCursoInterface;
-  private _criaCursoService: CriaCursoInterface;
+  private _listCourseservice: ListaCursoInterface;
+  private _criaCourseservice: CriaCursoInterface;
 
   constructor(
     @inject(TYPES.ListaCursoInterface) listaCursoUseCase: ListaCursoInterface,
     @inject(TYPES.CriaCursoInterface) criaCursoUseCase: CriaCursoInterface
   ) {
     super();
-    this._listCursoService = listaCursoUseCase;
-    this._criaCursoService = criaCursoUseCase;
+    this._listCourseservice = listaCursoUseCase;
+    this._criaCourseservice = criaCursoUseCase;
   }
 
   @httpGet(`/`)
@@ -47,7 +47,7 @@ export class CursosController
     console.log(query);
 
     // todo: invocar usecase
-    const resultado: any[] = this._listCursoService.execute({});
+    const resultado: any[] = this._listCourseservice.execute({});
 
     return this.json(resultado);
   }
@@ -88,7 +88,7 @@ export class CursosController
     // console.log(body);
 
     // todo: invocar camada de negócio
-    const result = this._criaCursoService.execute({
+    const result = this._criaCourseservice.execute({
       dataInicio: body.dataInicio,
       descricao: body.descricao,
     });

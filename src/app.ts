@@ -14,7 +14,7 @@ import { testControllerFactory } from "./presentation/controllers/testmiddleware
 import { CustomMiddleware } from "./presentation/middlewares/custom.middleware";
 
 import { ListaCursoInterface } from "./core/usecases/courses/list-courses/list-course.interface";
-import { ListaCursosUseCase } from "./core/usecases/courses/list-courses/list-course.usecase";
+import { ListaCoursesUseCase } from "./core/usecases/courses/list-courses/list-course.usecase";
 
 import { CriaCursoInterface } from "./core/usecases/courses/create-course/create-course.interface";
 import { CriaCursoUseCase } from "./core/usecases/courses/create-course/create-course.usecase";
@@ -35,7 +35,7 @@ export class App {
   configDependencies(): void {
     container
       .bind<ListaCursoInterface>(TYPES.ListaCursoInterface)
-      .to(ListaCursosUseCase);
+      .to(ListaCoursesUseCase);
     container
       .bind<CriaCursoInterface>(TYPES.CriaCursoInterface)
       .to(CriaCursoUseCase);

@@ -8,10 +8,10 @@ export class CourseEntity {
     this.id = cursoId;
     this.descricao = descricao;
     this.dataInicio = dataInicio;
-    this.status = this.getCursoStatus();
+    this.status = this.getCoursestatus();
   }
 
-  private getCursoStatus(): string {
+  private getCoursestatus(): string {
     return `status_mock`;
   }
 

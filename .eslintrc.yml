@@ -18,5 +18,6 @@ rules:
   quotes:
     - error
     - backtick
+    - "@typescript-eslint/no-namespace": "off"
   prettier/prettier: error
 # comentario no yaml

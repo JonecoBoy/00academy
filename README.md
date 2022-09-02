@@ -1,2 +1,3 @@
 # 00academy
-backend typescript escola de cursos
+
+backend typescript escola de Courses

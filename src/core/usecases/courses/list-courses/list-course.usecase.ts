@@ -4,7 +4,7 @@ import { ListaCursoInterface } from "./list-course.interface";
 import { BusinessError } from "../../../errors/business.error";
 
 @injectable()
-export class ListaCursosUseCase implements ListaCursoInterface {
+export class ListaCoursesUseCase implements ListaCursoInterface {
   execute(filter: any): any[] {
     // if (true)
     //     throw new BusinessError('teste middleware use case');
