@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router } from "express";
 // import publicRoutes from './routes/publicRoutes'
 // import privateRoutes from './routes/privateRoutes'
 // import adminRoutes from './routes/adminRoutes'
@@ -17,6 +17,8 @@ routes.get(``, (req, res, next) => {
     author,
   });
 });
+
+// todo criar validacao e rotas publicas e privadas
 // routes.use('/', publicRoutes)
 // routes.use('/', verifyLogin, privateRoutes)
 // routes.use('/', verifyLogin, verifyAdmin, adminRoutes)
