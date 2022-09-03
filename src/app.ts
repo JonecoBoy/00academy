@@ -8,6 +8,7 @@ import { InversifyExpressServer } from "inversify-express-utils";
 import TYPES from "./types";
 
 import "./presentation/controllers/courses.controller";
+import "./presentation/controllers/auth.controller";
 
 import { baseController } from "./presentation/controllers/base.controller";
 import { CustomMiddleware } from "./presentation/middlewares/custom.middleware";

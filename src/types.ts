@@ -5,6 +5,8 @@ const TYPES = {
   UpdateCourseInterface: Symbol.for(`UpdateCourseInterface`),
   DeleteCourseInterface: Symbol.for(`DeleteCourseInterface`),
 
+  AuthLoginInterface: Symbol.for(`AuthLoginInterface`),
+
 
   CourseRepositoryInterface: Symbol.for(`CourseRepositoryInterface`),
   CustomMiddleware: Symbol.for(`CustomMiddleware`),
