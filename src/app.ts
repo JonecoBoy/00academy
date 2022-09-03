@@ -24,6 +24,9 @@ import { SearchCourseUseCase } from "./core/usecases/courses/search-course/searc
 import { UpdateCourseInterface } from "./core/usecases/courses/update-course/update-course.interface";
 import { UpdateCourseUseCase } from "./core/usecases/courses/update-course/update-course.usecase";
 
+import { DeleteCourseInterface } from "./core/usecases/courses/delete-course/delete-course.interface";
+import { DeleteCourseUseCase } from "./core/usecases/courses/delete-course/delete-course.usecase";
+
 import { CourseRepositoryInterface } from "./core/providers/courses-repository.interface";
 import { CourseRepository } from "./infra/repositories/courses.repository";
 
@@ -50,6 +53,9 @@ export class App {
     container
     .bind<UpdateCourseInterface>(TYPES.UpdateCourseInterface)
     .to(UpdateCourseUseCase);
+    container
+    .bind<DeleteCourseInterface>(TYPES.DeleteCourseInterface)
+    .to(DeleteCourseUseCase);
   container
       .bind<CourseRepositoryInterface>(TYPES.CourseRepositoryInterface)
       .to(CourseRepository);
@@ -66,15 +72,10 @@ export class App {
     );
 
     server.setConfig((app) => {
-      // // add body parser
-      // app.use(bodyParser.urlencoded({
-      //     extended: true
-      // }));
-
       app.use(express.json());
     });
 
-    // todo: config server
+
     server.setErrorConfig((app) => {
       app.use((err, req, res, next) => {
         if (err) {

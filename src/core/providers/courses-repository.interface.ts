@@ -7,12 +7,17 @@ export type CourseRespositorySearchParams = {
 export type CourseRespositoryCreateParams = {
   dataInicio: string;
   descricao: string;
+  status: boolean;
 };
 
 export type CourseRespositoryUpdateParams = {
   id:number;
   descricao?: string;
-  status?: string;
+  status?: boolean;
+};
+
+export type CourseRespositoryDeleteParams = {
+  id: number;
 };
 
 export interface CourseRepositoryInterface {
@@ -20,4 +25,5 @@ export interface CourseRepositoryInterface {
   search(model: CourseRespositorySearchParams): CourseEntity;
   create(model: CourseRespositoryCreateParams): CourseEntity;
   update(model: CourseRespositoryUpdateParams): CourseEntity;
+  delete(model: CourseRespositoryDeleteParams): any;
 }

@@ -28,6 +28,7 @@ export class CriaCourseUseCase implements CreateCourseInterface {
     const result = this._CourseRepository.create({
       dataInicio: model.dataInicio,
       descricao: model.descricao,
+      status: model.status,
     });
 
     return result;

@@ -1,18 +1,17 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export namespace UpdateCourseDto {
   export class Params {
     @IsString()
-    id: string;
+    id?: string;
   }
 
   export class Body {
+    @IsOptional()
     @IsString()
-    @IsNotEmpty()
     descricao?: string;
 
-    @IsString()
-    @IsNotEmpty()
-    status?: string;
+    @IsBoolean()
+    status?: boolean;
   }
 }

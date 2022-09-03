@@ -8,12 +8,12 @@ export const ValidateDtoMiddleware = (model: any, httpContext: string) => {
     const validationResult: ValidationError[] = await validate(output, {});
 
     if (validationResult.length > 0) {
-      const mensagens = validationResult.map((error: ValidationError) =>
+      const messages = validationResult.map((error: ValidationError) =>
         (Object as any).values(error.constraints).join(`, `)
       );
 
       return res.status(400).json({
-        mensagens,
+        messages,
       });
     }
 

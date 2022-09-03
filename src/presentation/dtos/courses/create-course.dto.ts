@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
 
 export namespace CreateCourseDto {
   export class Body {
@@ -10,8 +10,9 @@ export namespace CreateCourseDto {
     @IsNotEmpty()
     dataInicio: string;
 
-    // @IsString()
-    // @IsNotEmpty()
-    // status: string;
+    @IsBoolean()
+    @IsNotEmpty()
+    status: boolean;
+
   }
 }

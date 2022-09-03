@@ -12,6 +12,7 @@ import {
   httpPut,
   results,
   params,
+  httpDelete,
 } from "inversify-express-utils";
 import TYPES from "../../types";
 
@@ -27,6 +28,9 @@ import { SearchCourseDto } from "@presentation/dtos/courses/search-course.dto";
 import { UpdateCourseInterface } from "@core/usecases/courses/update-course/update-course.interface";
 import { UpdateCourseDto } from "../../presentation/dtos/courses/update-course.dto";
 
+import { DeleteCourseInterface } from "@core/usecases/courses/delete-course/delete-course.interface";
+import { DeleteCourseDto } from "../../presentation/dtos/courses/delete-course.dto";
+
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 
 @controller(`/courses`)
@@ -38,18 +42,21 @@ export class CoursesController
   private _createCourseervice: CreateCourseInterface;
   private _searchCourseService: SearchCourseInterface;
   private _updateCourseService: UpdateCourseInterface;
+  private _deleteCourseService: DeleteCourseInterface;
 
   constructor(
     @inject(TYPES.ListCoursesInterface) listCourseUseCase: ListCoursesInterface,
     @inject(TYPES.CreateCourseInterface) createCourseUseCase: CreateCourseInterface,
     @inject(TYPES.SearchCourseInterface) searchCourseUseCase: SearchCourseInterface,
-    @inject(TYPES.UpdateCourseInterface) updateCourseUseCase: UpdateCourseInterface
+    @inject(TYPES.UpdateCourseInterface) updateCourseUseCase: UpdateCourseInterface,
+    @inject(TYPES.DeleteCourseInterface) deleteCourseUseCase: DeleteCourseInterface
   ) {
     super();
     this._listCourseservice = listCourseUseCase;
     this._createCourseervice = createCourseUseCase;
     this._searchCourseService = searchCourseUseCase;
     this._updateCourseService = updateCourseUseCase;
+    this._deleteCourseService = deleteCourseUseCase;
   }
 
 
@@ -98,6 +105,7 @@ export class CoursesController
     const result = this._createCourseervice.execute({
       dataInicio: body.dataInicio,
       descricao: body.descricao,
+      status: body.status,
     });
 
     return this.json(result);
@@ -115,8 +123,9 @@ export class CoursesController
   ): Promise<interfaces.IHttpActionResult> {
     try{
       const descricao = body.descricao;
-      const status = body.status;
+      const status:boolean = body.status;
       const result = this._updateCourseService.execute({id,descricao,status});
+      return this.json(result);
 
     }
     catch (error) {
@@ -128,4 +137,28 @@ export class CoursesController
     }
 
   }
+
+    //deletar um curso
+    @httpDelete(
+      `/:id`,
+      ValidateDtoMiddleware(DeleteCourseDto.Params, `params`),
+    )
+    public async Delete(
+      @requestParam(`id`) id: number,
+    ): Promise<interfaces.IHttpActionResult> {
+      try{
+        const result = this._deleteCourseService.execute({id});
+        return this.json(result);
+  
+      }
+      catch (error) {
+        if (error.name === `BusinessError`) {
+          return this.badRequest(error.message);
+        }
+  
+        return this.internalServerError(error.message);
+      }
+  
+    }
+
 }

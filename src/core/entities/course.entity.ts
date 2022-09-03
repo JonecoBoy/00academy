@@ -2,24 +2,25 @@ export class CourseEntity {
   public id: number;
   public descricao: string;
   public dataInicio: string;
-  public status: string;
+  public status: boolean;
 
-  constructor(CourseId: number, descricao: string, dataInicio: string) {
+  constructor(CourseId: number, descricao: string, dataInicio: string,status: boolean) {
     this.id = CourseId;
     this.descricao = descricao;
     this.dataInicio = dataInicio;
-    this.status = this.getCoursestatus();
+    this.status = status;
   }
 
-  private getCoursestatus(): string {
-    return `status_mock`;
-  }
+  // private getCoursestatus(): string {
+  //   return `status_mock`;
+  // }
 
   static build(
     CourseId: number,
     descricao: string,
-    dataInicio: string
+    dataInicio: string,
+    status: boolean
   ): CourseEntity {
-    return new CourseEntity(CourseId, descricao, dataInicio);
+    return new CourseEntity(CourseId, descricao, dataInicio, status);
   }
 }

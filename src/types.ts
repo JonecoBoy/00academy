@@ -3,6 +3,7 @@ const TYPES = {
   CreateCourseInterface: Symbol.for(`CreateCourseInterface`),
   SearchCourseInterface: Symbol.for(`SearchCourseInterface`),
   UpdateCourseInterface: Symbol.for(`UpdateCourseInterface`),
+  DeleteCourseInterface: Symbol.for(`DeleteCourseInterface`),
 
 
   CourseRepositoryInterface: Symbol.for(`CourseRepositoryInterface`),
