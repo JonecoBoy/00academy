@@ -23,8 +23,6 @@ export class CriaCourseUseCase implements CreateCourseInterface {
   execute(model: CriaCourseUseCaseParams): CourseEntity {
     
 
-
-
     const result = this._CourseRepository.create({
       dataInicio: model.dataInicio,
       descricao: model.descricao,
