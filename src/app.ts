@@ -9,8 +9,10 @@ import { InversifyExpressServer } from "inversify-express-utils";
 
 import TYPES from "./types";
 
+// importar os controllers que automaticamente serão linkadas as rotas
 import "./presentation/controllers/courses.controller";
 import "./presentation/controllers/auth.controller";
+import "./presentation/controllers/users.controller";
 
 import { baseController } from "./presentation/controllers/base.controller";
 import { CustomMiddleware } from "./presentation/middlewares/custom.middleware";

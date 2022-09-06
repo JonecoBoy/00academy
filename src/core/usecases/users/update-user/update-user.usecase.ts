@@ -6,16 +6,16 @@ import {
 } from "./update-user.interface";
 import { UserEntity } from "@core/entities/user.entity";
 import { BusinessError } from "../../../errors/business.error";
-import { UserRepositoryInterface } from "@core/providers/users.repository.interface";
+import { UsersRepositoryInterface } from "@core/providers/users.repository.interface";
 import TYPES from "../../../../types";
 
 @injectable()
 export class UpdateUserUseCase implements UpdateUserInterface {
-  private _UserRepository: UserRepositoryInterface;
+  private _UserRepository: UsersRepositoryInterface;
 
   constructor(
-    @inject(TYPES.UserRepositoryInterface)
-    UserRepository: UserRepositoryInterface
+    @inject(TYPES.UsersRepositoryInterface)
+    UserRepository: UsersRepositoryInterface
   ) {
     this._UserRepository = UserRepository;
   }

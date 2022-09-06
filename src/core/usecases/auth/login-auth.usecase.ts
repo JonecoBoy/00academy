@@ -28,7 +28,7 @@ constructor(){
     const validPassword = process.env.ADMIN_PASSWORD;
 
     if(model.password == validPassword && model.user == validUser){
-      return UserEntity.build(1,validUser,validPassword,true)
+      return UserEntity.build(1,validUser,validPassword,true,true)
     }
     else{
       throw new Error('User and/or Password Not Match')

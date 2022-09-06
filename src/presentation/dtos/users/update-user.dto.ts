@@ -17,7 +17,7 @@ export namespace UpdateUserDto {
 
     @IsOptional()
     @IsBoolean()
-    admin?: string;
+    admin?: boolean;
 
     @IsOptional()
     @IsBoolean()
