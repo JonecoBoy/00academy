@@ -30,7 +30,7 @@ export class AuthController
 {
   private _authLoginService: AuthLoginInterface;
   constructor(
-    @inject(TYPES.SearchCourseInterface) searchCourseUseCase: AuthLoginInterface,
+    @inject(TYPES.AuthLoginInterface) AuthLoginUseCase: AuthLoginInterface,
   ) {
     super();
     this._authLoginService = AuthLoginUseCase;
