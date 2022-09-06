@@ -31,6 +31,9 @@ import { DeleteCourseUseCase } from "./core/usecases/courses/delete-course/delet
 import { CourseRepositoryInterface } from "./core/providers/courses-repository.interface";
 import { CourseRepository } from "./infra/repositories/courses.repository";
 
+import { AuthLoginInterface } from "./core/usecases/auth/login-auth.interface";
+import { AuthLoginUseCase } from "./core/usecases/auth/login-auth.usecase";
+
 const PORT = process.env.PORT || 3001;
 
 const container = new Container();
@@ -42,6 +45,7 @@ export class App {
   }
 
   configDependencies(): void {
+    // voce binda uma interface especificando um type para um useCase
     container
       .bind<ListCoursesInterface>(TYPES.ListCoursesInterface)
       .to(ListaCoursesUseCase);
@@ -60,6 +64,10 @@ export class App {
   container
       .bind<CourseRepositoryInterface>(TYPES.CourseRepositoryInterface)
       .to(CourseRepository);
+  container
+
+  .bind<AuthLoginInterface>(TYPES.AuthLoginInterface)
+  .to(AuthLoginUseCase);
     container
       .bind<express.RequestHandler>(TYPES.CustomMiddleware)
       .toConstantValue(CustomMiddleware);

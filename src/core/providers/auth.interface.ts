@@ -1,4 +1,4 @@
-import { UserEntity } from "@core/entities/user.entity";
+import { UserEntity } from "../../core/entities/user.entity";
 
 export type AuthLoginParams = {
   user: string;

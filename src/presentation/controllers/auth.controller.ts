@@ -21,7 +21,6 @@ import TYPES from "../../types";
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 import { AuthLoginInterface } from "@core/usecases/auth/login-auth.interface";
-import { AuthLoginUseCase } from "@core/usecases/auth/login-auth.usecase";
 
 @controller(`/auth`)
 export class AuthController
@@ -36,24 +35,6 @@ export class AuthController
     this._authLoginService = AuthLoginUseCase;
   }
 
-
-  //listar todos os cursos disponíveis
-  // @httpGet(`/`)
-  // public async listAllCourses(
-  //   @queryParam() query: ListCourseDto.Query
-  // ): Promise<interfaces.IHttpActionResult> {
-
-
-  //   const result: any[] = this._listCourseservice.execute({});
-
-  //   if (!result){
-  //     return this.json({
-  //       message: 'Courses List is Empty'
-  //     })
-  //   }
-
-  //   return this.json(result);
-  // }
 
   //logar
   @httpPost(`/`, ValidateDtoMiddleware(AuthLoginDto.Body, `body`))

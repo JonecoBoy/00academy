@@ -7,30 +7,31 @@ import {
 import { CourseEntity } from "@core/entities/course.entity";
 import TYPES from "../../../types";
 
-import { UserEntity } from "@core/entities/user.entity";
+import { UserEntity } from "../../../core/entities/user.entity";
 // import { AuthRepository } from "src/infra/auth/auth.repository";
 import { AuthInterface } from "@core/providers/auth.interface";
 import * as dotenv from 'dotenv'
 
 @injectable()
 export class AuthLoginUseCase implements AuthLoginInterface {
-  private _authRepository: AuthInterface;
 
-  constructor(
-    @inject(TYPES.AuthLoginInterface)
-    AuthRepository: AuthInterface
-  ) {
-    this._authRepository = AuthRepository;
-  }
+constructor(){
+  dotenv.config()
+}
+ 
 
   execute(model: AuthLoginUseCaseParams): UserEntity {
     
     try{
-    const validUser = process.env.user;
-    const validPassword = process.env.password;
+      
+    const validUser = process.env.ADMIN_USER;
+    const validPassword = process.env.ADMIN_PASSWORD;
 
     if(model.password == validPassword && model.user == validUser){
       return UserEntity.build(1,validUser,validPassword,true)
+    }
+    else{
+      throw new Error('User and/or Password Not Match')
     }
   }
     // criar repositorio de usuario só pra ter algum user la

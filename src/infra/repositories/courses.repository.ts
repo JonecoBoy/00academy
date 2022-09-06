@@ -7,7 +7,7 @@ import {
 } from "../../core/providers/courses-repository.interface";
 import { injectable } from "inversify";
 import { CourseEntity } from "../../core/entities/course.entity";
-import { SearchCourseUseCaseParams } from "@core/usecases/courses/search-course/search-course.interface";
+
 
 // todo try catch com as exceptions
 
