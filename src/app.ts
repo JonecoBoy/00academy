@@ -21,7 +21,7 @@ import { ListCoursesInterface } from "./core/usecases/courses/list-courses/list-
 import { ListCoursesUseCase } from "./core/usecases/courses/list-courses/list-course.usecase";
 
 import { CreateCourseInterface } from "./core/usecases/courses/create-course/create-course.interface";
-import { CreateaCourseUseCase } from "./core/usecases/courses/create-course/create-course.usecase";
+import { CreateCourseUseCase } from "./core/usecases/courses/create-course/create-course.usecase";
 
 import { SearchCourseInterface } from "./core/usecases/courses/search-course/search-course.interface";
 import { SearchCourseUseCase } from "./core/usecases/courses/search-course/search-course.usecase";
