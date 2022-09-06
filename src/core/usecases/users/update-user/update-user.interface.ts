@@ -8,10 +8,6 @@ export class UpdateUserUseCaseParams {
   admin: boolean;
   status: boolean;
 }
-// export class UpdateUserUseCaseBody{
-//   descricao: string;
-//   status: boolean;
-// }
 
 export interface UpdateUserInterface {
   execute(model: UpdateUserUseCaseParams): UserEntity;

@@ -33,6 +33,25 @@ import { DeleteCourseUseCase } from "./core/usecases/courses/delete-course/delet
 import { CourseRepositoryInterface } from "./core/providers/courses-repository.interface";
 import { CourseRepository } from "./infra/repositories/courses.repository";
 
+
+import { ListUsersInterface } from "./core/usecases/users/list-users/list-users.interface";
+import { ListUsersUseCase } from "./core/usecases/users/list-users/list-users.usecase";
+
+import { CreateUserInterface } from "./core/usecases/users/create-user/create-user.interface";
+import { CreateUserUseCase } from "./core/usecases/users/create-user/create-user.usecase";
+
+import { SearchUserInterface } from "./core/usecases/users/search-user/search-user.interface";
+import { SearchUserUseCase } from "./core/usecases/users/search-user/search-user.usecase";
+
+import { UpdateUserInterface } from "./core/usecases/users/update-user/update-user.interface";
+import { UpdateUserUseCase } from "./core/usecases/users/update-user/update-user.usecase";
+
+import { DeleteUserInterface } from "./core/usecases/users/delete-user/delete-user.interface";
+import { DeleteUserUseCase } from "./core/usecases/users/delete-user/delete-user.usecase";
+
+import { UsersRepositoryInterface } from "./core/providers/users.repository.interface";
+import { UsersRepository } from "./infra/repositories/users.repository";
+
 import { AuthLoginInterface } from "./core/usecases/auth/login-auth.interface";
 import { AuthLoginUseCase } from "./core/usecases/auth/login-auth.usecase";
 
@@ -67,8 +86,28 @@ export class App {
   container
       .bind<CourseRepositoryInterface>(TYPES.CourseRepositoryInterface)
       .to(CourseRepository);
-  container
 
+      container
+      .bind<ListUsersInterface>(TYPES.ListUsersInterface)
+      .to(ListUsersUseCase);
+    container
+      .bind<CreateUserInterface>(TYPES.CreateUserInterface)
+      .to(CreateUserUseCase);
+    container
+    .bind<SearchUserInterface>(TYPES.SearchUserInterface)
+    .to(SearchUserUseCase);
+    container
+    .bind<UpdateUserInterface>(TYPES.UpdateUserInterface)
+    .to(UpdateUserUseCase);
+    container
+    .bind<DeleteUserInterface>(TYPES.DeleteUserInterface)
+    .to(DeleteUserUseCase);
+  container
+      .bind<UsersRepositoryInterface>(TYPES.UsersRepositoryInterface)
+      .to(UsersRepository);
+
+
+  container
   .bind<AuthLoginInterface>(TYPES.AuthLoginInterface)
   .to(AuthLoginUseCase);
     container

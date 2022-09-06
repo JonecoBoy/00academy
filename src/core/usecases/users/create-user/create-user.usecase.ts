@@ -10,7 +10,7 @@ import TYPES from "../../../../types";
 import { UsersRepositoryInterface } from "../../../providers/users.repository.interface";
 
 @injectable()
-export class CriaUserUseCase implements CreateUserInterface {
+export class CreateUserUseCase implements CreateUserInterface {
   private _UserRepository: UsersRepositoryInterface;
 
   constructor(
