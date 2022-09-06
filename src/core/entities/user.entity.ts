@@ -9,6 +9,7 @@ export class UserEntity {
     this.id = userId;
     this.email = email;
     this.password = password;
+    this.admin= admin;
     this.status = status;
   }
 

@@ -10,12 +10,21 @@ import { UserEntity } from "../../core/entities/user.entity";
 
 
 // todo try catch com as exceptions
+// mockado o user inicial
+
+
+let UserMock = UserEntity.build(1,`user@user.com`,`password`,true,true);
 
 let data:Array<UserEntity> = [
 ]
 
+data.push(UserMock);
+
 @injectable()
 export class UsersRepository implements UsersRepositoryInterface {
+  constructor(){
+    
+  }
   list (): Array<UserEntity>{
     try{
       if(!data){
@@ -77,17 +86,20 @@ export class UsersRepository implements UsersRepositoryInterface {
   update(model: UsersRespositoryUpdateParams): UserEntity {
     // throw new Error(`Method not implemented.`);
     try{
-    const id = model.id;
+    if(!model.id){
+      throw new Error('You must provide a User ID')
+    }
     // todo colocar um if is set, para nao nullar tudo
     data.forEach((result)=>{
-      if(result.id == id){
-        result.email=model.email;
-        result.password=model.password;
-        result.admin=model.admin;
-        result.status=model.status;
+      if(result.id == model.id){
+        if(model.email) result.email=model.email;
+        if(model.password) result.password=model.password;
+        if(typeof model.admin !== undefined) {result.admin=model.admin};
+        if(typeof model.admin !== undefined) {result.status=model.status};
       }
 
     })
+    const id = model.id;
     return this.search({id});
   }
   catch(error){

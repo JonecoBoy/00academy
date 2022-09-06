@@ -32,6 +32,7 @@ import { DeleteUserInterface } from "@core/usecases/users/delete-user/delete-use
 import { DeleteUserDto } from "../../presentation/dtos/users/delete-user.dto";
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
+import { UserEntity } from "@core/entities/user.entity";
 
 @controller(`/users`)
 export class UsersController
@@ -67,7 +68,7 @@ export class UsersController
   ): Promise<interfaces.IHttpActionResult> {
 
 
-    const result: any[] = this._listUserservice.execute({});
+    const result: UserEntity[] = this._listUserservice.execute({});
 
     if (!result){
       return this.json({
