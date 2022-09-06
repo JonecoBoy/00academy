@@ -10,13 +10,13 @@ import TYPES from "../../../types";
 import { UserEntity } from "../../../core/entities/user.entity";
 // import { AuthRepository } from "src/infra/auth/auth.repository";
 import { AuthInterface } from "@core/providers/auth.interface";
-import * as dotenv from 'dotenv'
+
 
 @injectable()
 export class AuthLoginUseCase implements AuthLoginInterface {
 
 constructor(){
-  dotenv.config()
+ 
 }
  
 

@@ -9,6 +9,8 @@ const TYPES = {
 
 
   CourseRepositoryInterface: Symbol.for(`CourseRepositoryInterface`),
+  UsersRepositoryInterface: Symbol.for(`UsersRepositoryInterface`),
+
   CustomMiddleware: Symbol.for(`CustomMiddleware`),
 };
 

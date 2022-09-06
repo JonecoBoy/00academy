@@ -2,6 +2,8 @@ import "reflect-metadata";
 
 import * as express from "express";
 
+import * as dotenv  from "dotenv";
+
 import { Container } from "inversify";
 import { InversifyExpressServer } from "inversify-express-utils";
 
@@ -42,6 +44,7 @@ export class App {
   constructor() {
     this.configDependencies();
     this.createService();
+    dotenv.config()
   }
 
   configDependencies(): void {
