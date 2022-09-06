@@ -15,12 +15,14 @@ import {
   results,
   params,
   httpDelete,
+  requestHeaders,
 } from "inversify-express-utils";
 import TYPES from "../../types";
 
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 import { AuthLoginInterface } from "@core/usecases/auth/login-auth.interface";
+import { AuthDtoMiddleware } from "../../presentation/middlewares/auth-dto.middleware";
 
 @controller(`/auth`)
 export class AuthController
@@ -38,16 +40,32 @@ export class AuthController
 
   //logar
   @httpPost(`/`, ValidateDtoMiddleware(AuthLoginDto.Body, `body`))
-  public async createCourse(
+  public async login(
     @requestBody() body: AuthLoginDto.Body
   ): Promise<interfaces.IHttpActionResult> {
 
     const result = this._authLoginService.execute({
-      user:body.user,
+      email:body.email,
       password:body.password
     })
     return this.json(result);
   }
+
+    //verificar Login
+    @httpGet(`/validate/`, AuthDtoMiddleware(`bearer`))
+    public async validateLogin(
+      @requestHeaders() headers: any
+    ): Promise<interfaces.IHttpActionResult> {
+  
+      const teste = 1;
+      // const result = this._authLoginService.execute({
+      //   email:body.email,
+      //   password:body.password
+      // })
+      let result=teste;
+      return this.json(result);
+    }
+  
 
 
 }

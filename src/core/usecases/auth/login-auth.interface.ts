@@ -1,10 +1,10 @@
 import { UserEntity } from "../../../core/entities/user.entity";
 
 export class AuthLoginUseCaseParams {
-  user: string;
+  email: string;
   password: string;
 }
 
 export interface AuthLoginInterface {
-  execute(model: AuthLoginUseCaseParams): UserEntity;
+  execute(model: AuthLoginUseCaseParams): string;
 }

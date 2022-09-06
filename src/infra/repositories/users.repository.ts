@@ -9,8 +9,10 @@ import { injectable } from "inversify";
 import { UserEntity } from "../../core/entities/user.entity";
 
 
-// todo try catch com as exceptions
+
 // mockado o user inicial
+
+// todo verificar se ja existe email e nao deixar
 
 
 let UserMock = UserEntity.build(1,`user@user.com`,`password`,true,true);
@@ -40,6 +42,7 @@ export class UsersRepository implements UsersRepositoryInterface {
 
 
   create(model: UsersRespositoryCreateParams): UserEntity {
+    try{
     // pegar o ultimo id na base e add +1
     const id = this.getLastId(data)+1;
 
@@ -55,6 +58,12 @@ export class UsersRepository implements UsersRepositoryInterface {
       status: model.status,
     };
 
+  
+    const findUser = this.searchByEmail(dataModel);
+    if(findUser){
+      throw new Error(`Email Already Registered.`);
+    }
+
     const newUsers = UserEntity.build(
       dataModel.id,
       dataModel.email,
@@ -66,6 +75,10 @@ export class UsersRepository implements UsersRepositoryInterface {
     data.push(newUsers)
 
     return newUsers;
+    }
+    catch(error){
+      throw new Error(error);
+    }
   }
 
   search(model: UsersRespositorySearchParams): UserEntity {
@@ -75,6 +88,21 @@ export class UsersRepository implements UsersRepositoryInterface {
     const result = data.find((a)=>{return a.id==id})
     if(!result){
       throw new Error(`This Users does not exists.`);
+    }
+    return result;
+  }
+  catch(error){
+    throw new Error(error);
+  }
+  }
+
+  searchByEmail(model: UsersRespositorySearchParams): UserEntity {
+    // throw new Error(`Method not implemented.`);
+    try{
+    const email = model.email;
+    const result = data.find((a)=>{return a.email==email})
+    if(!result){
+      return null;
     }
     return result;
   }

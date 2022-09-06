@@ -2,6 +2,7 @@ import { UserEntity } from "../entities/user.entity";
 
 export type UsersRespositorySearchParams = {
   id?: number;
+  email?: string;
 };
 
 export type UsersRespositoryCreateParams = {
@@ -25,6 +26,7 @@ export type UsersRespositoryDeleteParams = {
 
 export interface UsersRepositoryInterface {
   list(model: UsersRespositorySearchParams): UserEntity[];
+  searchByEmail(model: UsersRespositorySearchParams): UserEntity;
   search(model: UsersRespositorySearchParams): UserEntity;
   create(model: UsersRespositoryCreateParams): UserEntity;
   update(model: UsersRespositoryUpdateParams): UserEntity;

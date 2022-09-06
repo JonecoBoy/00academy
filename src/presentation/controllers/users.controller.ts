@@ -67,7 +67,7 @@ export class UsersController
     @queryParam() query: ListUsersDto.Query
   ): Promise<interfaces.IHttpActionResult> {
 
-
+try{
     const result: UserEntity[] = this._listUserservice.execute({});
 
     if (!result){
@@ -78,6 +78,14 @@ export class UsersController
 
     return this.json(result);
   }
+  catch (error) {
+    if (error.name === `BusinessError`) {
+      return this.badRequest(error.message);
+    }
+
+    return this.internalServerError(error.message);
+  }
+}
 
   //listar um curso apenas
   @httpGet(`/:id`)
@@ -103,6 +111,7 @@ export class UsersController
   public async createUser(
     @requestBody() body: CreateUserDto.Body
   ): Promise<interfaces.IHttpActionResult> {
+    try{
     const result = this._createUserervice.execute({
       email: body.email,
       password: body.password,
@@ -111,6 +120,14 @@ export class UsersController
     });
 
     return this.json(result);
+  }
+  catch (error) {
+    if (error.name === `BusinessError`) {
+      return this.badRequest(error.message);
+    }
+
+    return this.internalServerError(error.message);
+  }
   }
 
     //editar um curso

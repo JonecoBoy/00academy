@@ -1,10 +1,10 @@
-import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
+import { IsBoolean, isEmail, IsNotEmpty, IsString } from "class-validator";
 
 export namespace AuthLoginDto {
   export class Body {
     @IsString()
     @IsNotEmpty()
-    user: string;
+    email: string;
 
     @IsString()
     @IsNotEmpty()
