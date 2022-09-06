@@ -6,7 +6,7 @@ import { CourseRepositoryInterface } from "@core/providers/courses-repository.in
 import TYPES from "../../../../types";
 
 @injectable()
-export class ListaCoursesUseCase implements ListCoursesInterface {
+export class ListCoursesUseCase implements ListCoursesInterface {
   private _CourseRepository: CourseRepositoryInterface;
 
   constructor(

@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import {
   CreateCourseInterface,
-  CriaCourseUseCaseParams,
+  CreateCourseUseCaseParams,
 } from "./create-course.interface";
 import { CourseEntity } from "@core/entities/course.entity";
 import TYPES from "../../../../types";
@@ -10,7 +10,7 @@ import TYPES from "../../../../types";
 import { CourseRepositoryInterface } from "../../../providers/courses-repository.interface";
 
 @injectable()
-export class CriaCourseUseCase implements CreateCourseInterface {
+export class CreateCourseUseCase implements CreateCourseInterface {
   private _CourseRepository: CourseRepositoryInterface;
 
   constructor(
@@ -20,7 +20,7 @@ export class CriaCourseUseCase implements CreateCourseInterface {
     this._CourseRepository = CourseRepository;
   }
 
-  execute(model: CriaCourseUseCaseParams): CourseEntity {
+  execute(model: CreateCourseUseCaseParams): CourseEntity {
     
 
     const result = this._CourseRepository.create({

@@ -18,10 +18,10 @@ import { baseController } from "./presentation/controllers/base.controller";
 import { CustomMiddleware } from "./presentation/middlewares/custom.middleware";
 
 import { ListCoursesInterface } from "./core/usecases/courses/list-courses/list-course.interface";
-import { ListaCoursesUseCase } from "./core/usecases/courses/list-courses/list-course.usecase";
+import { ListCoursesUseCase } from "./core/usecases/courses/list-courses/list-course.usecase";
 
 import { CreateCourseInterface } from "./core/usecases/courses/create-course/create-course.interface";
-import { CriaCourseUseCase } from "./core/usecases/courses/create-course/create-course.usecase";
+import { CreateaCourseUseCase } from "./core/usecases/courses/create-course/create-course.usecase";
 
 import { SearchCourseInterface } from "./core/usecases/courses/search-course/search-course.interface";
 import { SearchCourseUseCase } from "./core/usecases/courses/search-course/search-course.usecase";
@@ -72,10 +72,10 @@ export class App {
     // voce binda uma interface especificando um type para um useCase
     container
       .bind<ListCoursesInterface>(TYPES.ListCoursesInterface)
-      .to(ListaCoursesUseCase);
+      .to(ListCoursesUseCase);
     container
       .bind<CreateCourseInterface>(TYPES.CreateCourseInterface)
-      .to(CriaCourseUseCase);
+      .to(CreateCourseUseCase);
     container
     .bind<SearchCourseInterface>(TYPES.SearchCourseInterface)
     .to(SearchCourseUseCase);
