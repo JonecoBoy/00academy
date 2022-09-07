@@ -32,6 +32,7 @@ import { DeleteCourseInterface } from "@core/usecases/courses/delete-course/dele
 import { DeleteCourseDto } from "../../presentation/dtos/courses/delete-course.dto";
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
+import { AuthDtoMiddleware } from "../../presentation/middlewares/auth-dto.middleware";
 
 @controller(`/courses`)
 export class CoursesController
@@ -98,7 +99,8 @@ export class CoursesController
   }
 
   //criar um curso
-  @httpPost(`/`, ValidateDtoMiddleware(CreateCourseDto.Body, `body`))
+  @httpPost(`/`,AuthDtoMiddleware(`bearer`),
+   ValidateDtoMiddleware(CreateCourseDto.Body, `body`))
   public async createCourse(
     @requestBody() body: CreateCourseDto.Body
   ): Promise<interfaces.IHttpActionResult> {
@@ -114,6 +116,7 @@ export class CoursesController
     //editar um curso
   @httpPut(
     `/:id`,
+    AuthDtoMiddleware(`bearer`),
     ValidateDtoMiddleware(UpdateCourseDto.Params, `params`),
     ValidateDtoMiddleware(UpdateCourseDto.Body, `body`)
   )
@@ -141,6 +144,7 @@ export class CoursesController
     //deletar um curso
     @httpDelete(
       `/:id`,
+      AuthDtoMiddleware(`bearer`),
       ValidateDtoMiddleware(DeleteCourseDto.Params, `params`),
     )
     public async Delete(

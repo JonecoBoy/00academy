@@ -33,6 +33,7 @@ import { DeleteUserDto } from "../../presentation/dtos/users/delete-user.dto";
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 import { UserEntity } from "@core/entities/user.entity";
+import { AuthDtoMiddleware } from "../../presentation/middlewares/auth-dto.middleware";
 
 @controller(`/users`)
 export class UsersController
@@ -88,7 +89,7 @@ try{
 }
 
   //listar um usuario apenas
-  @httpGet(`/:id`)
+  @httpGet(`/:id`,AuthDtoMiddleware(`bearer`),)
   public async getUserById(
     @requestParam(`id`) id: number
   ): Promise<interfaces.IHttpActionResult> {
@@ -107,7 +108,9 @@ try{
   }
 
   //criar um usuario
-  @httpPost(`/`, ValidateDtoMiddleware(CreateUserDto.Body, `body`))
+  @httpPost(`/`, 
+  AuthDtoMiddleware(`bearer`),
+  ValidateDtoMiddleware(CreateUserDto.Body, `body`))
   public async createUser(
     @requestBody() body: CreateUserDto.Body
   ): Promise<interfaces.IHttpActionResult> {
@@ -133,6 +136,7 @@ try{
     //editar um usuario
   @httpPut(
     `/:id`,
+    AuthDtoMiddleware(`bearer`),
     ValidateDtoMiddleware(UpdateUserDto.Params, `params`),
     ValidateDtoMiddleware(UpdateUserDto.Body, `body`)
   )
@@ -162,6 +166,7 @@ try{
     //deletar um usuario
     @httpDelete(
       `/:id`,
+      AuthDtoMiddleware(`bearer`),
       ValidateDtoMiddleware(DeleteUserDto.Params, `params`),
     )
     public async Delete(
