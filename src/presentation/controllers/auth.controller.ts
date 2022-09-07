@@ -57,13 +57,9 @@ export class AuthController
       @requestHeaders() headers: any
     ): Promise<interfaces.IHttpActionResult> {
   
-      const teste = 1;
-      // const result = this._authLoginService.execute({
-      //   email:body.email,
-      //   password:body.password
-      // })
-      let result=teste;
-      return this.json(result);
+      let result=`sucess`;
+      return this.json(result,200);
+      
     }
   
 

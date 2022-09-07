@@ -61,7 +61,7 @@ export class UsersController
   }
 
 
-  //listar todos os cursos disponíveis
+  //listar todos os usuarios disponíveis
   @httpGet(`/`)
   public async listAllUsers(
     @queryParam() query: ListUsersDto.Query
@@ -87,7 +87,7 @@ try{
   }
 }
 
-  //listar um curso apenas
+  //listar um usuario apenas
   @httpGet(`/:id`)
   public async getUserById(
     @requestParam(`id`) id: number
@@ -106,7 +106,7 @@ try{
     }
   }
 
-  //criar um curso
+  //criar um usuario
   @httpPost(`/`, ValidateDtoMiddleware(CreateUserDto.Body, `body`))
   public async createUser(
     @requestBody() body: CreateUserDto.Body
@@ -130,7 +130,7 @@ try{
   }
   }
 
-    //editar um curso
+    //editar um usuario
   @httpPut(
     `/:id`,
     ValidateDtoMiddleware(UpdateUserDto.Params, `params`),
@@ -159,7 +159,7 @@ try{
 
   }
 
-    //deletar um curso
+    //deletar um usuario
     @httpDelete(
       `/:id`,
       ValidateDtoMiddleware(DeleteUserDto.Params, `params`),
