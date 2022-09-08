@@ -18,6 +18,7 @@ export type UsersRespositoryUpdateParams = {
   password?: string;
   admin?: boolean;
   status?: boolean;
+  students?:number[];
 };
 
 export type UsersRespositoryDeleteParams = {

@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export namespace UpdateCourseDto {
   export class Params {
@@ -11,7 +11,12 @@ export namespace UpdateCourseDto {
     @IsString()
     descricao?: string;
 
+    @IsOptional()
     @IsBoolean()
     status?: boolean;
+
+    @IsOptional()
+    @IsArray()
+    students?: number[];
   }
 }

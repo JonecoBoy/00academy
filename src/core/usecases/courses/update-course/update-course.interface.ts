@@ -6,7 +6,7 @@ export class UpdateCourseUseCaseParams {
   id: number;
   descricao: string;
   status: boolean;
-  students?:UserEntity[];
+  students?:number[];
 }
 
 

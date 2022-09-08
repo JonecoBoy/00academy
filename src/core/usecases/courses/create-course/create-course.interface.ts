@@ -5,7 +5,7 @@ export class CreateCourseUseCaseParams {
   descricao: string;
   dataInicio: string;
   status: boolean;
-  students?: UserEntity[];
+  students?: number[];
 }
 
 export interface CreateCourseInterface {

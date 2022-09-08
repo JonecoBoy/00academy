@@ -111,6 +111,7 @@ export class CoursesController
       dataInicio: body.dataInicio,
       descricao: body.descricao,
       status: body.status,
+      students: body.students,
     });
 
     return this.json(result);
@@ -131,7 +132,8 @@ export class CoursesController
     try{
       const descricao = body.descricao;
       const status:boolean = body.status;
-      const result = this._updateCourseService.execute({id,descricao,status});
+      const students:number[]=body.students;
+      const result = this._updateCourseService.execute({id,descricao,status,students});
       return this.json(result);
 
     }

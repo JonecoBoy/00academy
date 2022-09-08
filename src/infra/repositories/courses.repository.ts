@@ -5,8 +5,12 @@ import {
   CourseRespositoryUpdateParams,
   CourseRespositoryDeleteParams,
 } from "../../core/providers/courses-repository.interface";
-import { injectable } from "inversify";
+import {UsersRepositoryInterface} from "../../core/providers/users.repository.interface"
+import { inject, injectable } from "inversify";
 import { CourseEntity } from "../../core/entities/course.entity";
+import { UsersRepository, } from "./users.repository";
+import TYPES from "src/types";
+import { ListUsersUseCase } from "@core/usecases/users/list-users/list-users.usecase";
 
 
 // todo try catch com as exceptions
@@ -16,6 +20,8 @@ let data:Array<CourseEntity> = [
 
 @injectable()
 export class CourseRepository implements CourseRepositoryInterface {
+
+  _usersRepository = new UsersRepository();
   list (): Array<CourseEntity>{
     try{
       if(!data){
@@ -37,17 +43,25 @@ export class CourseRepository implements CourseRepositoryInterface {
     
     // todo verificar se ja existe o nome do curso em questao e mandar throw new Error
   
+    let studentsArray =[];
+    // verificar se os usuarios existem
+    model.students.forEach((id)=>{
+      let model = {id:id}
+      let student = this._usersRepository.search(model)
+      if(student){
+      studentsArray.push(student);
+      }
+    })
+    
 
+    
     const dataModel = {
       id,
       dataInicio: model.dataInicio,
       descricao: model.descricao,
       status: model.status,
-      students: model.students,
+      students: studentsArray,
     };
-
-    // verificar se os usuarios existem
-    
 
     const newCourse = CourseEntity.build(
       dataModel.id,
@@ -85,6 +99,17 @@ export class CourseRepository implements CourseRepositoryInterface {
       if(result.id == id){
         result.descricao=model.descricao;
         result.status=model.status;
+        if(model.students){
+        let studentsArray =[];
+
+        model.students.forEach((id)=>{
+          let student = this._usersRepository.search({id:id})
+          if(student){
+          studentsArray.push(student);
+          }
+        })
+        result.students = studentsArray;
+      }
       }
 
     })

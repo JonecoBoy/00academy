@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI1NTg5ODN9.UzSnDFYX49dAnC3XYzvJxGjRS_sO_RpfrsA2bpydwz8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2NzU4MzR9.7S5FONiotDTVeL3-cQCHSzCw9z1k1Ap6MW9wwdEk6SA",
 									"type": "string"
 								}
 							]
@@ -25,7 +25,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descricao\": \"teste2\",\n    \"dataInicio\": \"teste2\",\n    \"status\": true\n}",
+							"raw": "{\n    \"descricao\": \"teste2\",\n    \"dataInicio\": \"teste2\",\n    \"status\": true,\n    \"students\": [1,2]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,11 +68,21 @@
 				{
 					"name": "edit course",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2NzU4MzR9.7S5FONiotDTVeL3-cQCHSzCw9z1k1Ap6MW9wwdEk6SA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": true\n}",
+							"raw": "{\n    \"status\": true,\n    \"students\": [1]\n    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,14 +90,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3001/courses/2",
+							"raw": "localhost:3001/courses/1",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
 								"courses",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -143,7 +153,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI1NTg3MDd9.t5KDz2O7MdOub523ep-5kdSllAmmT0G9gFGqCWsAi8Q",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2NzU4MzR9.7S5FONiotDTVeL3-cQCHSzCw9z1k1Ap6MW9wwdEk6SA",
 									"type": "string"
 								}
 							]
@@ -152,7 +162,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"joneco2@hotmail.com\",\n    \"password\": \"flamengo\",\n    \"admin\": false,\n    \"status\": true\n}",
+							"raw": "{\n    \"email\": \"joneco@hotmail.com\",\n    \"password\": \"flamengo\",\n    \"admin\": false,\n    \"status\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsNotEmpty, IsString } from "class-validator";
 
 export namespace CreateCourseDto {
   export class Body {
@@ -13,6 +13,9 @@ export namespace CreateCourseDto {
     @IsBoolean()
     @IsNotEmpty()
     status: boolean;
+
+    @IsArray()
+    students: Array<number>;
 
   }
 }

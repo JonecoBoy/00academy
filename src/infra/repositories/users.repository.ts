@@ -87,7 +87,7 @@ export class UsersRepository implements UsersRepositoryInterface {
     const id = model.id;
     const result = data.find((a)=>{return a.id==id})
     if(!result){
-      throw new Error(`This Users does not exists.`);
+      return null;
     }
     return result;
   }
