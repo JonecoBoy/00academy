@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2NzU4MzR9.7S5FONiotDTVeL3-cQCHSzCw9z1k1Ap6MW9wwdEk6SA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2NzkzOTB9.DywR0hwDK6Hlr0y8XXaihcu3976HnW-ivJIF6u732Jw",
 									"type": "string"
 								}
 							]
@@ -25,7 +25,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descricao\": \"teste2\",\n    \"dataInicio\": \"teste2\",\n    \"status\": true,\n    \"students\": [1,2]\n}",
+							"raw": "{\n    \"descricao\": \"teste2\",\n    \"dataInicio\": \"2022-09-02\",\n    \"status\": true,\n    \"students\": [1,2,3]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -82,7 +82,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": true,\n    \"students\": [1]\n    \n}",
+							"raw": "{\n    \"descricao\": \"teste2\",\n    \"dataInicio\": \"2022-09-02\",\n    \"status\": false,\n    \"students\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -125,6 +125,16 @@
 				{
 					"name": "list-courses",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2NzkzOTB9.DywR0hwDK6Hlr0y8XXaihcu3976HnW-ivJIF6u732Jw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -153,7 +163,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2NzU4MzR9.7S5FONiotDTVeL3-cQCHSzCw9z1k1Ap6MW9wwdEk6SA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2Nzg1MzF9.Nxl59qnWIgm6ooEniPAa2HpZEbd-PpGUn_1KQkY1Zdw",
 									"type": "string"
 								}
 							]
@@ -162,7 +172,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"joneco@hotmail.com\",\n    \"password\": \"flamengo\",\n    \"admin\": false,\n    \"status\": true\n}",
+							"raw": "{\n    \"email\": \"joneco@hotmail.com\",\n    \"password\": \"flathebest\",\n    \"admin\": false,\n    \"status\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -186,6 +196,16 @@
 				{
 					"name": "delete user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2Nzg1MzF9.Nxl59qnWIgm6ooEniPAa2HpZEbd-PpGUn_1KQkY1Zdw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -233,6 +253,16 @@
 				{
 					"name": "search user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI2Nzg1MzF9.Nxl59qnWIgm6ooEniPAa2HpZEbd-PpGUn_1KQkY1Zdw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -276,7 +306,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\":\"user@user.com\",\n    \"password\":\"password\"\n}",
+					"raw": "{\n    \"email\":\"jonecos@hotmail.com\",\n    \"password\":\"flathebest\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
