@@ -45,8 +45,8 @@ constructor(
       const token = jwt.sign({ email: searchUser.email }, privateKey);
       return token;
     }
-    catch{
-      throw new Error('Cant Login')
+    catch(message){
+      throw new Error(message)
     }
   }
 }

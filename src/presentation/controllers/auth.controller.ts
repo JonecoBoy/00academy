@@ -44,12 +44,16 @@ export class AuthController
     @requestBody() body: AuthLoginDto.Body
   ): Promise<interfaces.IHttpActionResult> {
 
-    const result = this._authLoginService.execute({
+    try{const result = this._authLoginService.execute({
       email:body.email,
       password:body.password
     })
     return this.json(result);
   }
+  catch (error) {
+    return this.internalServerError(error.message);
+  }
+}
 
     //verificar Login
     @httpGet(`/validate/`, AuthDtoMiddleware(`bearer`))
@@ -57,8 +61,15 @@ export class AuthController
       @requestHeaders() headers: any
     ): Promise<interfaces.IHttpActionResult> {
   
+      try{
       let result=`sucess`;
       return this.json(result,200);
+      }
+      catch (error) {
+        
+          return this.internalServerError(error.message);
+        
+      }
       
     }
   
