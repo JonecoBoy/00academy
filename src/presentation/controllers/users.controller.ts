@@ -180,7 +180,13 @@ try{
     ): Promise<interfaces.IHttpActionResult> {
       try{
         const result = this._deleteUserService.execute({id});
-        return this.json(result);
+
+        if(!result){
+          throw new Error (`User does not Exists`);
+        }
+        else{
+        return this.json(`User ID ${id} successfully deleted`);
+        }
   
       }
       catch (error) {
