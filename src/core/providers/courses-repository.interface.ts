@@ -1,3 +1,4 @@
+import { UserEntity } from "@core/entities/user.entity";
 import { CourseEntity } from "../entities/course.entity";
 
 export type CourseRespositorySearchParams = {
@@ -8,12 +9,14 @@ export type CourseRespositoryCreateParams = {
   dataInicio: string;
   descricao: string;
   status: boolean;
+  students?:UserEntity;
 };
 
 export type CourseRespositoryUpdateParams = {
   id:number;
   descricao?: string;
   status?: boolean;
+  students?:UserEntity;
 };
 
 export type CourseRespositoryDeleteParams = {

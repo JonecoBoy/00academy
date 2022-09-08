@@ -5,6 +5,7 @@ export class CreateUserUseCaseParams {
   password: string;
   admin: boolean;
   status: boolean;
+  students?: UserEntity[];
 }
 
 export interface CreateUserInterface {

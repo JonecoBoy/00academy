@@ -27,6 +27,7 @@ export class CreateCourseUseCase implements CreateCourseInterface {
       dataInicio: model.dataInicio,
       descricao: model.descricao,
       status: model.status,
+      students:model.students,
     });
 
     return result;
