@@ -98,6 +98,10 @@ try{
 
       const result = this._searchUserService.execute({id});
 
+      if(!result){
+        throw new Error (`User does not Exists`);
+      }
+
       return this.json(result);
     } catch (error) {
       if (error.name === `BusinessError`) {
