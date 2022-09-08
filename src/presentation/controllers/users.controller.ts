@@ -34,6 +34,7 @@ import { DeleteUserDto } from "../../presentation/dtos/users/delete-user.dto";
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 import { UserEntity } from "@core/entities/user.entity";
 import { AuthDtoMiddleware } from "../../presentation/middlewares/auth-dto.middleware";
+import { AuthAdminDtoMiddleware } from "../../presentation/middlewares/auth-admin-dto.middleware";
 
 @controller(`/users`)
 export class UsersController
@@ -110,6 +111,7 @@ try{
   //criar um usuario
   @httpPost(`/`, 
   AuthDtoMiddleware(`bearer`),
+  AuthAdminDtoMiddleware(`bearer`),
   ValidateDtoMiddleware(CreateUserDto.Body, `body`))
   public async createUser(
     @requestBody() body: CreateUserDto.Body

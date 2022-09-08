@@ -33,6 +33,7 @@ import { DeleteCourseDto } from "../../presentation/dtos/courses/delete-course.d
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 import { AuthDtoMiddleware } from "../../presentation/middlewares/auth-dto.middleware";
+import { AuthAdminDtoMiddleware } from "../middlewares/auth-admin-dto.middleware";
 
 @controller(`/courses`)
 export class CoursesController
@@ -99,7 +100,9 @@ export class CoursesController
   }
 
   //criar um curso
-  @httpPost(`/`,AuthDtoMiddleware(`bearer`),
+  @httpPost(`/`,
+  AuthDtoMiddleware(`bearer`),
+  AuthAdminDtoMiddleware(`bearer`),
    ValidateDtoMiddleware(CreateCourseDto.Body, `body`))
   public async createCourse(
     @requestBody() body: CreateCourseDto.Body
@@ -117,6 +120,7 @@ export class CoursesController
   @httpPut(
     `/:id`,
     AuthDtoMiddleware(`bearer`),
+    AuthAdminDtoMiddleware(`bearer`),
     ValidateDtoMiddleware(UpdateCourseDto.Params, `params`),
     ValidateDtoMiddleware(UpdateCourseDto.Body, `body`)
   )
@@ -145,6 +149,7 @@ export class CoursesController
     @httpDelete(
       `/:id`,
       AuthDtoMiddleware(`bearer`),
+      AuthAdminDtoMiddleware(`bearer`),
       ValidateDtoMiddleware(DeleteCourseDto.Params, `params`),
     )
     public async Delete(

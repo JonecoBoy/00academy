@@ -9,14 +9,14 @@ export type CourseRespositoryCreateParams = {
   dataInicio: string;
   descricao: string;
   status: boolean;
-  students?:UserEntity;
+  students?:UserEntity[];
 };
 
 export type CourseRespositoryUpdateParams = {
   id:number;
   descricao?: string;
   status?: boolean;
-  students?:UserEntity;
+  students?:UserEntity[];
 };
 
 export type CourseRespositoryDeleteParams = {

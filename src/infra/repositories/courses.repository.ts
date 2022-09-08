@@ -43,13 +43,18 @@ export class CourseRepository implements CourseRepositoryInterface {
       dataInicio: model.dataInicio,
       descricao: model.descricao,
       status: model.status,
+      students: model.students,
     };
+
+    // verificar se os usuarios existem
+    
 
     const newCourse = CourseEntity.build(
       dataModel.id,
       dataModel.descricao,
       dataModel.dataInicio,
-      dataModel.status
+      dataModel.status,
+      dataModel.students
     );
 
     data.push(newCourse)
