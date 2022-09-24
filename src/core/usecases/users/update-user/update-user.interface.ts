@@ -1,4 +1,4 @@
-import { UserEntity } from "@core/entities/user.entity";
+import { UserEntity } from "../../../entities/user.entity";
 
 // todo separar 
 export class UpdateUserUseCaseParams {

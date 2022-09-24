@@ -1,5 +1,4 @@
 import { CourseEntity } from "@core/entities/course.entity";
-import { UserEntity } from "@core/entities/user.entity";
 
 export class CreateCourseUseCaseParams {
   descricao: string;

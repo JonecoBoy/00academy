@@ -4,7 +4,7 @@ import {
   CreateUserInterface,
   CreateUserUseCaseParams,
 } from "./create-user.interface";
-import { UserEntity } from "@core/entities/user.entity";
+import { UserEntity } from "../../../entities/user.entity";
 import TYPES from "../../../../types";
 
 import { UsersRepositoryInterface } from "../../../providers/users.repository.interface";
@@ -20,7 +20,7 @@ export class CreateUserUseCase implements CreateUserInterface {
     this._UserRepository = UserRepository;
   }
 
-  execute(model: CreateUserUseCaseParams): UserEntity {
+  async execute(model: CreateUserUseCaseParams): Promise<UserEntity> {
     // verificar se ja nao existe o email
 
     const result = this._UserRepository.create({

@@ -1,4 +1,4 @@
-import { UserEntity } from "@core/entities/user.entity";
+import { UserEntity } from "../../../entities/user.entity";
 
 export class CreateUserUseCaseParams {
   email: string;
@@ -9,5 +9,5 @@ export class CreateUserUseCaseParams {
 }
 
 export interface CreateUserInterface {
-  execute(model: CreateUserUseCaseParams): UserEntity;
+  execute(model: CreateUserUseCaseParams): Promise<UserEntity>;
 }

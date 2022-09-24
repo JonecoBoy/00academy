@@ -44,10 +44,12 @@ export class AuthController
     @requestBody() body: AuthLoginDto.Body
   ): Promise<interfaces.IHttpActionResult> {
 
-    try{const result = this._authLoginService.execute({
+    try{
+      const result = await this._authLoginService.execute({
       email:body.email,
       password:body.password
-    })
+    });
+
     return this.json(result);
   }
   catch (error) {

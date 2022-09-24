@@ -23,7 +23,7 @@ export const AuthAdminDtoMiddleware = (authContext: string) => {
 
       });
       
-      const user = _usersRepository.searchByEmail(auth);
+      const user = await _usersRepository.searchByEmail(auth);
 
       
       if(!user.admin){

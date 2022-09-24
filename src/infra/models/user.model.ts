@@ -1,15 +1,17 @@
 import mongoose,{Types,Schema,Model,model, Date, Models} from "mongoose";
 
 export interface IUserMongoModel{
-    email:String,
-    password:String,
-    status: Date,
-    admin: Boolean,
+    uuid: string,
+    email: string,
+    password:string,
+    status: boolean,
+    admin: boolean,
     updated_at: Date,
     created_at: Date
 }
 
 const UserSchema = new mongoose.Schema<IUserMongoModel>({
+    uuid:{type: String, required:true},
     email:{type: String, required:true},
     password:{type: String, required:true},
     status:{type: Boolean, default: true},

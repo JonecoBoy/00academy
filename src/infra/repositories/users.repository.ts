@@ -11,40 +11,33 @@ import { UserEntity } from "../../core/entities/user.entity";
 import mongoose, { Model, Schema } from 'mongoose';
 import { UUID } from "bson";
 import { IUserMongoModel, UserMongoModel } from "../models/user.model";
-
-
-// mockado o user inicial
-
-// todo verificar se ja existe email e nao deixar
-
-
-let UserMock = UserEntity.build(1,`user@user.com`,`password`,true,true);
-
-let data:Array<UserEntity> = [
-]
-
-
-// criar uma funcao adapter pra mudar do mongoose pro entity ,perguntar como fazer
-
-data.push(UserMock);
-
-//todo criar interface pro repositorio e perguntar se nao faria isso
+import { UserAdapter } from "../models/user.adapter";
+import { BaseAdapter } from "../base.adapter";
 
 @injectable()
 export class UsersRepository implements UsersRepositoryInterface {
 
   private _userModel: Model<IUserMongoModel>;
+  private _userAdapter : BaseAdapter<any,any>;
 
   constructor(
   ){
-    this._userModel = UserMongoModel
+    this._userModel = UserMongoModel;
+    this._userAdapter = new UserAdapter();
   }
-  async list (){
+  async list () :Promise<Array<UserEntity>>{
+    // variavel global na funcao
+    let result=[];
     try{
+      const data = await this._userModel.find({}).lean().exec();
+      data.forEach((item)=>{
+        result.push(this._userAdapter.modelToEntity(item));
+      })
+    
       if(!data){
         throw new Error(`The course list is empty.`)
       }
-      return await this._userModel.find({}).lean().exec();
+      return result;
   
     }
     catch(error){
@@ -54,93 +47,44 @@ export class UsersRepository implements UsersRepositoryInterface {
   }
 
 
-  create(model: UsersRespositoryCreateParams): UserEntity {
+  async create(model: UsersRespositoryCreateParams): Promise<UserEntity> {
     try{
-    // pegar o ultimo id na base e add +1
-    const id = this.getLastId(data)+1;
+      const data = await this._userModel.create({model});
 
-    
-    // todo verificar se ja existe o nome do curso em questao e mandar throw new Error
-  
-    const dataModel = {
-      id,
-      email: model.email,
-      password: model.password,
-      admin: model.admin,
-      status: model.status,
-    };
-
-  
-    const findUser = this.searchByEmail(dataModel);
-    if(findUser){
-      throw new Error(`Email Already Registered.`);
-    }
-
-    const newUsers = UserEntity.build(
-      dataModel.id,
-      dataModel.email,
-      dataModel.password,
-      dataModel.admin,
-      dataModel.status
-    );
-
-    data.push(newUsers)
-
-    return newUsers;
+    return null;
     }
     catch(error){
       throw new Error(error);
     }
   }
 
-  search(model: UsersRespositorySearchParams): UserEntity {
+  search(model: UsersRespositorySearchParams): Promise<UserEntity> {
     // throw new Error(`Method not implemented.`);
     try{
-    const id = model.id;
-    const result = data.find((a)=>{return a.id==id})
-    if(!result){
-      return null;
-    }
-    return result;
+      
+    return null;
   }
   catch(error){
     throw new Error(error);
   }
   }
 
-  searchByEmail(model: UsersRespositorySearchParams): UserEntity {
+  async searchByEmail(model: UsersRespositorySearchParams): Promise<UserEntity> {
     // throw new Error(`Method not implemented.`);
     try{
-    const email = model.email;
-    const result = data.find((a)=>{return a.email==email})
-    if(!result){
-      return null;
-    }
-    return result;
+      const data = await this._userModel.findOne({email:model.email}).lean().exec();
+      const result = this._userAdapter.modelToEntity(data)
+      return result;
   }
   catch(error){
     throw new Error(error);
   }
   }
 
-  update(model: UsersRespositoryUpdateParams): UserEntity {
+  update(model: UsersRespositoryUpdateParams): Promise<UserEntity> {
     // throw new Error(`Method not implemented.`);
     try{
-    if(!model.id){
-      throw new Error('You must provide a User ID')
-    }
-    // todo colocar um if is set, para nao nullar tudo
-    data.forEach((result)=>{
-      if(result.id == model.id){
-        if(model.email) result.email=model.email;
-        if(model.password) result.password=model.password;
-        if(typeof model.admin !== undefined) {result.admin=model.admin};
-        if(typeof model.admin !== undefined) {result.status=model.status};
-      }
-
-    })
-    const id = model.id;
-    return this.search({id});
+      return null;
   }
   catch(error){
     throw new Error(error);
@@ -150,15 +94,7 @@ export class UsersRepository implements UsersRepositoryInterface {
 
   delete(model: UsersRespositoryDeleteParams): any {
     try{
-      // verificar se existe o curso
-      const result = this.search(model);
-        if(result){
-      var courseid = model.id;
-      data = data.filter((entity,id)=>{
-        return (entity.id != courseid)
-      })
-      return true
-    }
+      return null;
   }
     catch(error){
     throw new Error(error);

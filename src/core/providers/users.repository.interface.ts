@@ -26,10 +26,10 @@ export type UsersRespositoryDeleteParams = {
 };
 
 export interface UsersRepositoryInterface {
-  list(model: UsersRespositorySearchParams): Promise<any>;
-  searchByEmail(model: UsersRespositorySearchParams): UserEntity;
-  search(model: UsersRespositorySearchParams): UserEntity;
-  create(model: UsersRespositoryCreateParams): UserEntity;
-  update(model: UsersRespositoryUpdateParams): UserEntity;
+  list(model: UsersRespositorySearchParams): Promise<Array<UserEntity>>;
+  searchByEmail(model: UsersRespositorySearchParams): Promise<UserEntity>;
+  search(model: UsersRespositorySearchParams): Promise<UserEntity>;
+  create(model: UsersRespositoryCreateParams): Promise<UserEntity>;
+  update(model: UsersRespositoryUpdateParams): Promise<UserEntity>;
   delete(model: UsersRespositoryDeleteParams): any;
 }

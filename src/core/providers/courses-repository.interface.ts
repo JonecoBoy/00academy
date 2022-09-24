@@ -1,4 +1,3 @@
-import { UserEntity } from "@core/entities/user.entity";
 import { CourseEntity } from "../entities/course.entity";
 
 export type CourseRespositorySearchParams = {

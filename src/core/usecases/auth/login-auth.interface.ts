@@ -6,5 +6,5 @@ export class AuthLoginUseCaseParams {
 }
 
 export interface AuthLoginInterface {
-  execute(model: AuthLoginUseCaseParams): string;
+  execute(model: AuthLoginUseCaseParams): Promise<string>;
 }

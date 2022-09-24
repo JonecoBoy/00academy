@@ -1,5 +1,4 @@
 import { CourseEntity } from "@core/entities/course.entity";
-import { UserEntity } from "@core/entities/user.entity";
 
 // todo separar 
 export class UpdateCourseUseCaseParams {

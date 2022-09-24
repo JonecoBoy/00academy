@@ -1,11 +1,15 @@
+import { Date } from "mongoose";
+
 export class UserEntity {
-  public id: number;
+  public id: string;
   public email: string;
   public password: string;
   public admin: boolean;
   public status: boolean;
+  public updated_at: Date;
+  public created_at: Date;
 
-  constructor(userId: number, email: string, password: string,admin: boolean,status: boolean) {
+  constructor(userId: string, email: string, password: string,admin: boolean,status: boolean, updated_at: Date, created_at: Date) {
     this.id = userId;
     this.email = email;
     this.password = password;
@@ -15,12 +19,14 @@ export class UserEntity {
 
   
   static build(
-    userId: number,
+    userId: string,
     email: string,
     password: string,
     admin: boolean, 
-    status: boolean
+    status: boolean,
+    updated_at: Date,
+    created_at: Date
   ): UserEntity {
-    return new UserEntity(userId, email, password,admin, status);
+    return new UserEntity(userId, email, password,admin, status, updated_at, created_at);
   }
 }

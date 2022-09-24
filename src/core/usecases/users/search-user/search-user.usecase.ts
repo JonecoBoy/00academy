@@ -4,8 +4,6 @@ import {
   SearchUserInterface,
   SearchUserUseCaseParams,
 } from "./search-user.interface";
-import { UserEntity } from "@core/entities/user.entity";
-import { BusinessError } from "../../../errors/business.error";
 import { UsersRepositoryInterface } from "../../../providers/users.repository.interface";
 import TYPES from "../../../../types";
 

@@ -29,12 +29,12 @@ constructor(
 }
  
 
-  execute(model: AuthLoginUseCaseParams): string {
+  async execute(model: AuthLoginUseCaseParams): Promise<string> {
     
     try{
       
     // procurar 
-    const searchUser = this._UserRepository.searchByEmail(model);
+    const searchUser = await this._UserRepository.searchByEmail(model);
 
     if(!searchUser || searchUser.password !== searchUser.password){
       throw new Error('User email and/or password does not exists')

@@ -4,8 +4,7 @@ import {
   DeleteUserInterface,
   DeleteUserUseCaseParams,
 } from "./delete-user.interface";
-import { UserEntity } from "@core/entities/user.entity";
-import { BusinessError } from "../../../errors/business.error";
+
 import { UsersRepositoryInterface } from "@core/providers/users.repository.interface";
 import TYPES from "../../../../types";
 
