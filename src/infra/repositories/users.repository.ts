@@ -5,9 +5,12 @@ import {
   UsersRespositoryUpdateParams,
   UsersRespositoryDeleteParams,
 } from "../../core/providers/users.repository.interface";
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
 import { UserEntity } from "../../core/entities/user.entity";
 
+import mongoose, { Model, Schema } from 'mongoose';
+import { UUID } from "bson";
+import { IUserMongoModel, UserMongoModel } from "../models/user.model";
 
 
 // mockado o user inicial
@@ -20,19 +23,29 @@ let UserMock = UserEntity.build(1,`user@user.com`,`password`,true,true);
 let data:Array<UserEntity> = [
 ]
 
+
+// criar uma funcao adapter pra mudar do mongoose pro entity ,perguntar como fazer
+
 data.push(UserMock);
+
+//todo criar interface pro repositorio e perguntar se nao faria isso
 
 @injectable()
 export class UsersRepository implements UsersRepositoryInterface {
-  constructor(){
-    
+
+  private _userModel: Model<IUserMongoModel>;
+
+  constructor(
+  ){
+    this._userModel = UserMongoModel
   }
-  list (): Array<UserEntity>{
+  async list (){
     try{
       if(!data){
         throw new Error(`The course list is empty.`)
       }
-      return data;
+      return await this._userModel.find({}).lean().exec();
+  
     }
     catch(error){
       throw new Error(error);
@@ -49,7 +62,6 @@ export class UsersRepository implements UsersRepositoryInterface {
     
     // todo verificar se ja existe o nome do curso em questao e mandar throw new Error
   
-
     const dataModel = {
       id,
       email: model.email,

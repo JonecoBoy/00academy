@@ -27,7 +27,7 @@ export class UsersMockedRepository implements UsersRepositoryInterface {
   constructor(){
     
   }
-  list (): Array<UserEntity>{
+  async list (): Promise<Array<UserEntity>>{
     try{
       if(!data){
         throw new Error(`The course list is empty.`)

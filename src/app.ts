@@ -56,6 +56,7 @@ import { UsersRepository } from "./infra/repositories/users.repository";
 
 import { AuthLoginInterface } from "./core/usecases/auth/login-auth.interface";
 import { AuthLoginUseCase } from "./core/usecases/auth/login-auth.usecase";
+import mongoose from "mongoose";
 
 const PORT = process.env.PORT || 3001;
 
@@ -119,7 +120,7 @@ export class App {
     baseController(container);
   }
 
-  createService(): void {
+  async createService(): Promise<void> {
     const server: InversifyExpressServer = new InversifyExpressServer(
       container
     );
@@ -146,6 +147,8 @@ export class App {
         next();
       });
     });
+
+    await mongoose.connect('mongodb://localhost/zerozeroloja');
 
     const app = server.build();
 

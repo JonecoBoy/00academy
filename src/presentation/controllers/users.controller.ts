@@ -70,7 +70,7 @@ export class UsersController
   ): Promise<interfaces.IHttpActionResult> {
 
 try{
-    const result: UserEntity[] = this._listUserservice.execute({});
+    const result: UserEntity[] = await this._listUserservice.execute({});
 
     if (!result){
       return this.json({

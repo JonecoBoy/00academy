@@ -1,3 +1,3 @@
 export interface ListUsersInterface {
-  execute(filter: any): any[];
+  execute(filter: any): Promise<any[]>;
 }

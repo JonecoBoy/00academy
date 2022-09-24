@@ -26,7 +26,7 @@ export type UsersRespositoryDeleteParams = {
 };
 
 export interface UsersRepositoryInterface {
-  list(model: UsersRespositorySearchParams): UserEntity[];
+  list(model: UsersRespositorySearchParams): Promise<any>;
   searchByEmail(model: UsersRespositorySearchParams): UserEntity;
   search(model: UsersRespositorySearchParams): UserEntity;
   create(model: UsersRespositoryCreateParams): UserEntity;

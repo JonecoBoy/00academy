@@ -16,9 +16,9 @@ export class ListUsersUseCase implements ListUsersInterface {
     this._UserRepository = UserRepository;
   }
   
-  execute(filter: any): any[] {
+  async execute(filter: any): Promise<any[]> {
 
-    const result = this._UserRepository.list({
+    const result = await this._UserRepository.list({
     });
 
   return result;

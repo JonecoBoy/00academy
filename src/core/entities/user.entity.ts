@@ -13,6 +13,7 @@ export class UserEntity {
     this.status = status;
   }
 
+  
   static build(
     userId: number,
     email: string,
