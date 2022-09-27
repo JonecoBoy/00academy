@@ -9,6 +9,7 @@ const TYPES = {
   ListUsersInterface: Symbol.for(`ListUsersInterface`),
   CreateUserInterface: Symbol.for(`CreateUserInterface`),
   SearchUserInterface: Symbol.for(`SearchUserInterface`),
+  SearchCustomUserInterface: Symbol.for(`SearchCustomUserInterface`),
   UpdateUserInterface: Symbol.for(`UpdateUserInterface`),
   DeleteUserInterface: Symbol.for(`DeleteUserInterface`),
 
