@@ -25,6 +25,7 @@
     "yarn": "^1.22.19"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "eslint-config-standard-with-typescript": "^22.0.0",
     "prettier": "^2.7.1"

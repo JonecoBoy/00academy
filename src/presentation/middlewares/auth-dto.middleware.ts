@@ -4,6 +4,8 @@
 import * as dayjs from 'dayjs'
 import * as jwt from 'jsonwebtoken';
 import { UsersRepository } from '../../infra/repositories/users.repository';
+import * as sha256 from 'crypto-js/sha256';
+import * as aes from 'crypto-js/aes';
 
 export const AuthDtoMiddleware = (authContext: string) => {
   const _usersRepository = new UsersRepository();
@@ -17,8 +19,8 @@ export const AuthDtoMiddleware = (authContext: string) => {
         );
       }
       const token = req.headers.authorization.replace('Bearer ','');
-    
-      const privateKey = '2215x5as4224sf'
+      
+      const privateKey = process.env.PRIVATE_TOKEN
       const tokenExpirationTime = parseInt(process.env.TOKEN_EXPIRATION_TIME);
       let today = dayjs();
       const auth = jwt.verify(token, privateKey,(err,decoded)=>{
@@ -41,12 +43,18 @@ export const AuthDtoMiddleware = (authContext: string) => {
         );
       }
 
-      const user = _usersRepository.searchByEmail(auth);
+      const data = await _usersRepository.searchCustom(auth);
+      const user = data[0];
       if(!user){
         return res.status(400).json(
           `User does not exists`,
         );
       }
+      // if(user.password !== sha256(process.env.PRIVATE_TOKEN+auth.password).toString()){
+      //     return res.status(400).json(
+      //       `Password Not Match`,
+      //     );
+      // }
 
     }else{
       return res.status(400).json(

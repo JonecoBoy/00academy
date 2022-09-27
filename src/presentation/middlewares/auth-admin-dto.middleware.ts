@@ -16,16 +16,17 @@ export const AuthAdminDtoMiddleware = (authContext: string) => {
       }
       const token = req.headers.authorization.replace('Bearer ','');
     
-      const privateKey = '2215x5as4224sf'
+      const privateKey = process.env.PRIVATE_TOKEN
 
       const auth = jwt.verify(token, privateKey,(err,decoded)=>{
         return decoded
 
       });
       
-      const user = await _usersRepository.searchByEmail(auth);
+      const data = await _usersRepository.searchCustom({email:auth.email});
 
-      
+      const user = data[0]
+   
       if(!user.admin){
         return res.status(403).json(
           `Permission Denied`,

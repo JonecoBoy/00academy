@@ -12,6 +12,8 @@ import { AuthInterface } from "@core/providers/auth.interface";
 // import { sign ,verify} from 'jsonwebtoken';
 import * as jwt from 'jsonwebtoken';
 import { UsersRepositoryInterface } from "@core/providers/users.repository.interface";
+import * as sha256 from 'crypto-js/sha256';
+import * as aes from 'crypto-js/aes';
 
 
 @injectable()
@@ -34,15 +36,15 @@ constructor(
     try{
       
     // procurar 
-    const data = await this._UserRepository.searchCustom({email:model.email,password:model.password});
+    const data = await this._UserRepository.searchCustom({email:model.email});
 
     const searchUser = data[0];
   
-    if(!searchUser || searchUser.password !== searchUser.password){
+    if(!searchUser || searchUser.password !== sha256(process.env.PRIVATE_TOKEN+model.password).toString()){
       throw new Error('User email and/or password does not exists')
     } 
       // todo tirar daqui e por em um jwt provider
-      const privateKey = '2215x5as4224sf'
+      const privateKey = process.env.PRIVATE_TOKEN;
       
       const token = jwt.sign({ email: searchUser.email }, privateKey);
       return token;

@@ -16,6 +16,8 @@ import { BaseAdapter } from "../base.adapter";
 import * as dayjs from 'dayjs'
 import { ObjectId } from "mongodb";
 import { BusinessError } from "../../core/errors/business.error";
+import * as sha256 from 'crypto-js/sha256';
+import * as aes from 'crypto-js/aes';
 
 @injectable()
 export class UsersRepository implements UsersRepositoryInterface {
@@ -62,12 +64,13 @@ export class UsersRepository implements UsersRepositoryInterface {
           throw Error('Email already Exists')
       }
 
+      const teste = sha256(process.env.PRIVATE_TOKEN+model.password);
       await this._userModel.create(
         {
         admin: model.admin,
         status: model.status,
         email: model.email,
-        password: model.password,
+        password: sha256(process.env.PRIVATE_TOKEN+model.password),
         updated_at: now,
         created_at: now,
         }
