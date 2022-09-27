@@ -57,6 +57,8 @@ import { UsersRepository } from "./infra/repositories/users.repository";
 import { AuthLoginInterface } from "./core/usecases/auth/login-auth.interface";
 import { AuthLoginUseCase } from "./core/usecases/auth/login-auth.usecase";
 import mongoose from "mongoose";
+import { SearchCustomUserInterface } from "./core/usecases/users/search-custom-user/search-custom-user.interface";
+import { SearchCustomUserUseCase } from "./core/usecases/users/search-custom-user/search-custom-user.usecase";
 
 const PORT = process.env.PORT || 3001;
 
@@ -96,6 +98,9 @@ export class App {
     container
       .bind<CreateUserInterface>(TYPES.CreateUserInterface)
       .to(CreateUserUseCase);
+    container
+    .bind<SearchCustomUserInterface>(TYPES.SearchCustomUserInterface)
+    .to(SearchCustomUserUseCase);
     container
     .bind<SearchUserInterface>(TYPES.SearchUserInterface)
     .to(SearchUserUseCase);
