@@ -1,13 +1,13 @@
 import { UserEntity } from "./user.entity";
 
 export class CourseEntity {
-  public id: number;
+  public id: string;
   public descricao: string;
   public dataInicio: string;
   public status: boolean;
   public students: UserEntity[];
 
-  constructor(CourseId: number, descricao: string, dataInicio: string,status: boolean, students: UserEntity[]) {
+  constructor(CourseId: string, descricao: string, dataInicio: string,status: boolean, students: UserEntity[]) {
     this.id = CourseId;
     this.descricao = descricao;
     this.dataInicio = dataInicio;
@@ -20,7 +20,7 @@ export class CourseEntity {
   // }
 
   static build(
-    CourseId: number,
+    CourseId: string,
     descricao: string,
     dataInicio: string,
     status: boolean,
