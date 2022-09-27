@@ -34,8 +34,10 @@ constructor(
     try{
       
     // procurar 
-    const searchUser = await this._UserRepository.searchByEmail(model);
+    const data = await this._UserRepository.searchCustom({email:model.email,password:model.password});
 
+    const searchUser = data[0];
+  
     if(!searchUser || searchUser.password !== searchUser.password){
       throw new Error('User email and/or password does not exists')
     } 

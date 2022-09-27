@@ -1,9 +1,9 @@
 import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import {
-  SearchUserInterface,
+  SearchCustomUserInterface,
   SearchUserUseCaseParams,
-} from "./search-user.interface";
+} from "./search-custom-user.interface";
 import { UsersRepositoryInterface } from "../../../providers/users.repository.interface";
 import TYPES from "../../../../types";
 import { UserEntity } from "@core/entities/user.entity";
@@ -11,7 +11,7 @@ import { UserEntity } from "@core/entities/user.entity";
 //todo search by email
 
 @injectable()
-export class SearchUserUseCase implements SearchUserInterface {
+export class SearchCustomUserUseCase implements SearchCustomUserInterface {
   private _UserRepository: UsersRepositoryInterface;
 
   constructor(
@@ -21,9 +21,9 @@ export class SearchUserUseCase implements SearchUserInterface {
     this._UserRepository = UserRepository;
   }
   
-  execute(model: SearchUserUseCaseParams): Promise<UserEntity> {
+  execute(model: SearchUserUseCaseParams): Promise<Array<UserEntity>> {
 
-    const result = this._UserRepository.search(model);
+    const result = this._UserRepository.searchCustom(model);
 
   return result;
   }

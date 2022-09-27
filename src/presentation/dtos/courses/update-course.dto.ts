@@ -17,6 +17,6 @@ export namespace UpdateCourseDto {
 
     @IsOptional()
     @IsArray()
-    students?: number[];
+    students?: string[];
   }
 }

@@ -4,7 +4,7 @@ export class CreateCourseUseCaseParams {
   descricao: string;
   dataInicio: string;
   status: boolean;
-  students?: number[];
+  students?: string[];
 }
 
 export interface CreateCourseInterface {

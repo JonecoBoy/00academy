@@ -7,6 +7,7 @@ import {
 
 import { UsersRepositoryInterface } from "@core/providers/users.repository.interface";
 import TYPES from "../../../../types";
+import { UserEntity } from "@core/entities/user.entity";
 
 @injectable()
 export class UpdateUserUseCase implements UpdateUserInterface {
@@ -19,9 +20,9 @@ export class UpdateUserUseCase implements UpdateUserInterface {
     this._UserRepository = UserRepository;
   }
   
-  execute(model: any): any {
+  async execute(model: any): Promise<UserEntity> {
 
-    const result = this._UserRepository.update(model);
+    const result = await this._UserRepository.update(model);
 
   return result;
   }

@@ -2,10 +2,10 @@ import { CourseEntity } from "@core/entities/course.entity";
 
 // todo separar 
 export class UpdateCourseUseCaseParams {
-  id: number;
+  id: string;
   descricao: string;
   status: boolean;
-  students?:number[];
+  students?:string[];
 }
 
 

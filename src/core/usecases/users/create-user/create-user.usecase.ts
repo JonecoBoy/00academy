@@ -8,6 +8,7 @@ import { UserEntity } from "../../../entities/user.entity";
 import TYPES from "../../../../types";
 
 import { UsersRepositoryInterface } from "../../../providers/users.repository.interface";
+import { IsUUID } from "class-validator";
 
 @injectable()
 export class CreateUserUseCase implements CreateUserInterface {
@@ -20,16 +21,23 @@ export class CreateUserUseCase implements CreateUserInterface {
     this._UserRepository = UserRepository;
   }
 
-  async execute(model: CreateUserUseCaseParams): Promise<UserEntity> {
+  async execute(model: CreateUserUseCaseParams): Promise<boolean> {
     // verificar se ja nao existe o email
 
-    const result = this._UserRepository.create({
+    try{
+    const result = await this._UserRepository.create({
       email: model.email,
       password: model.password,
       admin: model.admin,
       status: model.status,
     });
-
-    return result;
+    if(result){
+      return true;
+    }
+    
+  }
+  catch(error){
+    throw new Error(error);
+  }
   }
 }

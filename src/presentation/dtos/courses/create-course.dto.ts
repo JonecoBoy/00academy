@@ -15,7 +15,7 @@ export namespace CreateCourseDto {
     status: boolean;
 
     @IsArray()
-    students: Array<number>;
+    students: Array<string>;
 
   }
 }

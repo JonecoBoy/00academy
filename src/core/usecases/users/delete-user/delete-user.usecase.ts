@@ -19,9 +19,9 @@ export class DeleteUserUseCase implements DeleteUserInterface {
     this._UserRepository = UserRepository;
   }
   
-  execute(model: any): any {
+  async execute(model: DeleteUserUseCaseParams): Promise<any> {
 
-    const result = this._UserRepository.delete(model);
+    const result = await this._UserRepository.delete(model);
 
   return result;
   }

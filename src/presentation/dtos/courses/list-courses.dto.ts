@@ -4,6 +4,6 @@ export namespace ListCourseDto {
   export class Query {
     @IsNumber()
     @IsNotEmpty()
-    id: number;
+    id: string;
   }
 }

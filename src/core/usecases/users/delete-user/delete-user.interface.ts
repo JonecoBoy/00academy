@@ -1,9 +1,9 @@
 import { UserEntity } from "../../../entities/user.entity";
 
 export class DeleteUserUseCaseParams {
-  id: number;
+  id: string;
 }
 
 export interface DeleteUserInterface {
-  execute(model: DeleteUserUseCaseParams): UserEntity;
+  execute(model: DeleteUserUseCaseParams): Promise<boolean>;
 }

@@ -9,5 +9,5 @@ export class CreateUserUseCaseParams {
 }
 
 export interface CreateUserInterface {
-  execute(model: CreateUserUseCaseParams): Promise<UserEntity>;
+  execute(model: CreateUserUseCaseParams): Promise<boolean>;
 }

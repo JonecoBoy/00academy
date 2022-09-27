@@ -1,7 +1,7 @@
 import { CourseEntity } from "@core/entities/course.entity";
 
 export class SearchCourseUseCaseParams {
-  id: number;
+  id: string;
 }
 
 export interface SearchCourseInterface {

@@ -2,13 +2,13 @@ import { UserEntity } from "../../../entities/user.entity";
 
 // todo separar 
 export class UpdateUserUseCaseParams {
-  id: number;
-  email: string;
-  password: string;
-  admin: boolean;
-  status: boolean;
+  id: string;
+  email?: string;
+  password?: string;
+  admin?: boolean;
+  status?: boolean;
 }
 
 export interface UpdateUserInterface {
-  execute(model: UpdateUserUseCaseParams): UserEntity;
+  execute(model: UpdateUserUseCaseParams): Promise<UserEntity>;
 }

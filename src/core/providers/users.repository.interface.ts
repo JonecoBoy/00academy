@@ -1,7 +1,7 @@
 import { UserEntity } from "../entities/user.entity";
 
 export type UsersRespositorySearchParams = {
-  id?: number;
+  id?: string;
   email?: string;
 };
 
@@ -13,23 +13,26 @@ export type UsersRespositoryCreateParams = {
 };
 
 export type UsersRespositoryUpdateParams = {
-  id:number;
+  id:string;
   email?: string;
   password?: string;
   admin?: boolean;
   status?: boolean;
-  students?:number[];
+  students?:string[];
 };
 
 export type UsersRespositoryDeleteParams = {
-  id: number;
+  id: string;
 };
 
 export interface UsersRepositoryInterface {
   list(model: UsersRespositorySearchParams): Promise<Array<UserEntity>>;
   searchByEmail(model: UsersRespositorySearchParams): Promise<UserEntity>;
   search(model: UsersRespositorySearchParams): Promise<UserEntity>;
-  create(model: UsersRespositoryCreateParams): Promise<UserEntity>;
+  searchCustom(model: any): Promise<Array<UserEntity>>;
+  create(model: UsersRespositoryCreateParams): Promise<boolean>;
   update(model: UsersRespositoryUpdateParams): Promise<UserEntity>;
-  delete(model: UsersRespositoryDeleteParams): any;
+  delete(model: UsersRespositoryDeleteParams): Promise<boolean>;
+  getLastId(): Promise<any>;
+  
 }

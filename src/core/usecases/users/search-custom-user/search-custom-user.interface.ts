@@ -4,6 +4,6 @@ export class SearchUserUseCaseParams {
   id: string;
 }
 
-export interface SearchUserInterface {
-  execute(model: SearchUserUseCaseParams): Promise<UserEntity>;
+export interface SearchCustomUserInterface {
+  execute(model: object): Promise<Array<UserEntity>>;
 }

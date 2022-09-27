@@ -1,25 +1,25 @@
 import { CourseEntity } from "../entities/course.entity";
 
 export type CourseRespositorySearchParams = {
-  id?: number;
+  id?: string;
 };
 
 export type CourseRespositoryCreateParams = {
   dataInicio: string;
   descricao: string;
   status: boolean;
-  students?:number[];
+  students?:string[];
 };
 
 export type CourseRespositoryUpdateParams = {
-  id:number;
+  id:string;
   descricao?: string;
   status?: boolean;
-  students?:number[];
+  students?:string[];
 };
 
 export type CourseRespositoryDeleteParams = {
-  id: number;
+  id: string;
 };
 
 export interface CourseRepositoryInterface {

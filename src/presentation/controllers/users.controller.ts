@@ -22,19 +22,20 @@ import { ListUsersDto } from "../../presentation/dtos/users/list-users.dto";
 import { CreateUserDto } from "../../presentation/dtos/users/create-user.dto";
 import { CreateUserInterface } from "../../core/usecases/users/create-user/create-user.interface";
 
-import { SearchUserInterface } from "@core/usecases/users/search-user/search-user.interface";
+import { SearchUserInterface } from "../../core/usecases/users/search-user/search-user.interface";
 import { SearchUserDto } from "@presentation/dtos/users/search-user.dto";
 
-import { UpdateUserInterface } from "@core/usecases/users/update-user/update-user.interface";
+import { UpdateUserInterface } from "../../core/usecases/users/update-user/update-user.interface";
 import { UpdateUserDto } from "../../presentation/dtos/users/update-user.dto";
 
-import { DeleteUserInterface } from "@core/usecases/users/delete-user/delete-user.interface";
+import { DeleteUserInterface } from "../../core/usecases/users/delete-user/delete-user.interface";
 import { DeleteUserDto } from "../../presentation/dtos/users/delete-user.dto";
 
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 import { UserEntity } from "../../core/entities/user.entity";
 import { AuthDtoMiddleware } from "../../presentation/middlewares/auth-dto.middleware";
 import { AuthAdminDtoMiddleware } from "../../presentation/middlewares/auth-admin-dto.middleware";
+import { SearchCustomUserInterface } from "../../core/usecases/users/search-custom-user/search-custom-user.interface";
 
 @controller(`/users`)
 export class UsersController
@@ -46,11 +47,13 @@ export class UsersController
   private _searchUserService: SearchUserInterface;
   private _updateUserService: UpdateUserInterface;
   private _deleteUserService: DeleteUserInterface;
+  private _searchCustomUserService: SearchCustomUserInterface;
 
   constructor(
     @inject(TYPES.ListUsersInterface) listUserUseCase: ListUsersInterface,
     @inject(TYPES.CreateUserInterface) createUserUseCase: CreateUserInterface,
     @inject(TYPES.SearchUserInterface) searchUserUseCase: SearchUserInterface,
+    @inject(TYPES.SearchCustomUserInterface) searchCustomUserUseCase: SearchCustomUserInterface,
     @inject(TYPES.UpdateUserInterface) updateUserUseCase: UpdateUserInterface,
     @inject(TYPES.DeleteUserInterface) deleteUserUseCase: DeleteUserInterface
   ) {
@@ -58,6 +61,7 @@ export class UsersController
     this._listUserservice = listUserUseCase;
     this._createUserervice = createUserUseCase;
     this._searchUserService = searchUserUseCase;
+    this._searchCustomUserService = searchCustomUserUseCase;
     this._updateUserService = updateUserUseCase;
     this._deleteUserService = deleteUserUseCase;
   }
@@ -89,14 +93,34 @@ try{
   }
 }
 
-  //listar um usuario apenas
-  @httpGet(`/:id`,AuthDtoMiddleware(`bearer`),)
-  public async getUserById(
-    @requestParam(`id`) id: number
+  //listar usuarios baseado em um filtro
+  @httpGet(`/search`)
+  public async getCourseByCustomFilter(
+    @queryParam() params,
   ): Promise<interfaces.IHttpActionResult> {
     try {
 
-      const result = this._searchUserService.execute({id});
+     const result = await this._searchCustomUserService.execute(params);
+
+      return this.json(result);
+    } catch (error) {
+      if (error.name === `BusinessError`) {
+        return this.badRequest(error.message);
+      }
+
+      return this.internalServerError(error.message);
+    }
+  }
+
+
+  //listar um usuario apenas
+  @httpGet(`/:id`,AuthDtoMiddleware(`bearer`),)
+  public async getUserById(
+    @requestParam(`id`) id: string
+  ): Promise<interfaces.IHttpActionResult> {
+    try {
+
+      const result = await this._searchUserService.execute({id});
 
       if(!result){
         throw new Error (`User does not Exists`);
@@ -121,7 +145,7 @@ try{
     @requestBody() body: CreateUserDto.Body
   ): Promise<interfaces.IHttpActionResult> {
     try{
-    const result = this._createUserervice.execute({
+    const result = await this._createUserervice.execute({
       email: body.email,
       password: body.password,
       admin: body.admin,
@@ -147,15 +171,11 @@ try{
     ValidateDtoMiddleware(UpdateUserDto.Body, `body`)
   )
   public async update(
-    @requestParam(`id`) id: number,
+    @requestParam(`id`) id: string,
     @requestBody() body: UpdateUserDto.Body
   ): Promise<interfaces.IHttpActionResult> {
     try{
-      const email:string = body.email;
-      const password:string = body.password;
-      const admin:boolean = body.admin;
-      const status:boolean = body.status;
-      const result = this._updateUserService.execute({id,email,password,admin,status});
+      const result = await this._updateUserService.execute({id:id,...body});
       return this.json(result);
 
     }
@@ -176,10 +196,10 @@ try{
       ValidateDtoMiddleware(DeleteUserDto.Params, `params`),
     )
     public async Delete(
-      @requestParam(`id`) id: number,
+      @requestParam(`id`) id: DeleteUserDto.Params,
     ): Promise<interfaces.IHttpActionResult> {
       try{
-        const result = this._deleteUserService.execute({id});
+        const result = await this._deleteUserService.execute(id);
 
         if(!result){
           throw new Error (`User does not Exists`);

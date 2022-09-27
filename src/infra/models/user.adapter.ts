@@ -10,7 +10,7 @@ constructor(){
 
 public entityToModel = (entity:UserEntity):IUserMongoModel=>{
     return {
-        uuid: entity.id,
+        _id: entity.id,
         email:entity.email,
         password:entity.password,
         status: entity.status,
@@ -23,7 +23,7 @@ public entityToModel = (entity:UserEntity):IUserMongoModel=>{
 
 public modelToEntity = (model:IUserMongoModel):any=>{
     return new UserEntity(
-        model.uuid,
+        model._id,
         model.email,
         model.password,
         model.admin,

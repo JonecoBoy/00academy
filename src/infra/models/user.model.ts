@@ -1,7 +1,7 @@
 import mongoose,{Types,Schema,Model,model, Date, Models} from "mongoose";
 
 export interface IUserMongoModel{
-    uuid: string,
+    _id: string,
     email: string,
     password:string,
     status: boolean,
@@ -11,13 +11,12 @@ export interface IUserMongoModel{
 }
 
 const UserSchema = new mongoose.Schema<IUserMongoModel>({
-    uuid:{type: String, required:true},
     email:{type: String, required:true},
     password:{type: String, required:true},
     status:{type: Boolean, default: true},
     admin:{type: Boolean, default: false},
-    updated_at:{type:Date, default:Date.now},
-    created_at:{type:Date, default:Date.now},
+    updated_at:{type: String},
+    created_at:{type: String},
 })
 
 // export default mongoose.model('Users',UserSchema)

@@ -20,6 +20,7 @@
     "mongoose": "^6.6.1",
     "reflect-metadata": "^0.1.13",
     "typescript": "*",
+    "uuid": "^9.0.0",
     "yarn": "^1.22.19"
   },
   "devDependencies": {

@@ -83,7 +83,7 @@ export class CoursesController
   //listar um curso apenas
   @httpGet(`/:id`)
   public async getCourseById(
-    @requestParam(`id`) id: number
+    @requestParam(`id`) id: string
   ): Promise<interfaces.IHttpActionResult> {
     try {
 
@@ -98,6 +98,8 @@ export class CoursesController
       return this.internalServerError(error.message);
     }
   }
+
+    
 
   //criar um curso
   @httpPost(`/`,
@@ -126,13 +128,13 @@ export class CoursesController
     ValidateDtoMiddleware(UpdateCourseDto.Body, `body`)
   )
   public async update(
-    @requestParam(`id`) id: number,
+    @requestParam(`id`) id: string,
     @requestBody() body: UpdateCourseDto.Body
   ): Promise<interfaces.IHttpActionResult> {
     try{
       const descricao = body.descricao;
       const status:boolean = body.status;
-      const students:number[]=body.students;
+      const students:string[]=body.students;
       const result = this._updateCourseService.execute({id,descricao,status,students});
       return this.json(result);
 
@@ -155,7 +157,7 @@ export class CoursesController
       ValidateDtoMiddleware(DeleteCourseDto.Params, `params`),
     )
     public async Delete(
-      @requestParam(`id`) id: number,
+      @requestParam(`id`) id: string,
     ): Promise<interfaces.IHttpActionResult> {
       try{
         const result = this._deleteCourseService.execute({id});
