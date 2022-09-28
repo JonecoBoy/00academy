@@ -1,4 +1,4 @@
-import { CourseEntity } from "@core/entities/course.entity";
+import { CourseEntity } from "../../../entities/course.entity";
 
 export class CreateCourseUseCaseParams {
   descricao: string;
@@ -8,5 +8,5 @@ export class CreateCourseUseCaseParams {
 }
 
 export interface CreateCourseInterface {
-  execute(model: CreateCourseUseCaseParams): CourseEntity;
+  execute(model: CreateCourseUseCaseParams): Promise<CourseEntity>;
 }

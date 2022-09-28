@@ -4,7 +4,7 @@ import {
   SearchCourseInterface,
   SearchCourseUseCaseParams,
 } from "./search-course.interface";
-import { CourseEntity } from "@core/entities/course.entity";
+import { CourseEntity } from "../../../entities/course.entity";
 import { BusinessError } from "../../../errors/business.error";
 import { CourseRepositoryInterface } from "@core/providers/courses-repository.interface";
 import TYPES from "../../../../types";

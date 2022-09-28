@@ -4,6 +4,7 @@ import { ListCoursesInterface } from "./list-course.interface";
 import { BusinessError } from "../../../errors/business.error";
 import { CourseRepositoryInterface } from "@core/providers/courses-repository.interface";
 import TYPES from "../../../../types";
+import { CourseEntity } from "../../../entities/course.entity";
 
 @injectable()
 export class ListCoursesUseCase implements ListCoursesInterface {
@@ -16,9 +17,9 @@ export class ListCoursesUseCase implements ListCoursesInterface {
     this._CourseRepository = CourseRepository;
   }
   
-  execute(filter: any): any[] {
+  async execute(filter: any): Promise<Array<CourseEntity>> {
 
-    const result = this._CourseRepository.list({
+    const result = await this._CourseRepository.list({
     });
 
   return result;

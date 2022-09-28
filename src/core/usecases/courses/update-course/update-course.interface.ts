@@ -1,4 +1,4 @@
-import { CourseEntity } from "@core/entities/course.entity";
+import { CourseEntity } from "../../../entities/course.entity";
 
 // todo separar 
 export class UpdateCourseUseCaseParams {

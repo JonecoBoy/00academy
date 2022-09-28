@@ -4,7 +4,7 @@ import {
   CreateCourseInterface,
   CreateCourseUseCaseParams,
 } from "./create-course.interface";
-import { CourseEntity } from "@core/entities/course.entity";
+import { CourseEntity } from "../../../entities/course.entity";
 import TYPES from "../../../../types";
 
 import { CourseRepositoryInterface } from "../../../providers/courses-repository.interface";
@@ -20,10 +20,10 @@ export class CreateCourseUseCase implements CreateCourseInterface {
     this._CourseRepository = CourseRepository;
   }
 
-  execute(model: CreateCourseUseCaseParams): CourseEntity {
+  async execute(model: CreateCourseUseCaseParams): Promise<CourseEntity> {
     
 
-    const result = this._CourseRepository.create({
+    const result = await this._CourseRepository.create({
       dataInicio: model.dataInicio,
       descricao: model.descricao,
       status: model.status,

@@ -1,3 +1,5 @@
+import { CourseEntity } from "../../../../core/entities/course.entity";
+
 export interface ListCoursesInterface {
-  execute(filter: any): any[];
+  execute(filter: any): Promise<Array<CourseEntity>>;
 }

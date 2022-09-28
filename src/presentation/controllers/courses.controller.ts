@@ -69,7 +69,7 @@ export class CoursesController
   ): Promise<interfaces.IHttpActionResult> {
 
 
-    const result: any[] = this._listCourseservice.execute({});
+    const result: any[] = await this._listCourseservice.execute({});
 
     if (!result){
       return this.json({

@@ -64,7 +64,6 @@ export class UsersRepository implements UsersRepositoryInterface {
           throw Error('Email already Exists')
       }
 
-      const teste = sha256(process.env.PRIVATE_TOKEN+model.password);
       await this._userModel.create(
         {
         admin: model.admin,

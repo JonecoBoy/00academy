@@ -1,4 +1,4 @@
-import { CourseEntity } from "@core/entities/course.entity";
+import { CourseEntity } from "../../../entities/course.entity";
 
 export class SearchCourseUseCaseParams {
   id: string;

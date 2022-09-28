@@ -1,4 +1,4 @@
-import { CourseEntity } from "@core/entities/course.entity";
+import { CourseEntity } from "../../../../core/entities/course.entity";
 
 export class DeleteCourseUseCaseParams {
   id: string;

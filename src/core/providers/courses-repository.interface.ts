@@ -23,9 +23,9 @@ export type CourseRespositoryDeleteParams = {
 };
 
 export interface CourseRepositoryInterface {
-  list(model: CourseRespositorySearchParams): CourseEntity[];
-  search(model: CourseRespositorySearchParams): CourseEntity;
-  create(model: CourseRespositoryCreateParams): CourseEntity;
-  update(model: CourseRespositoryUpdateParams): CourseEntity;
+  list(model: CourseRespositorySearchParams): Promise<Array<CourseEntity>>;
+  search(model: CourseRespositorySearchParams): Promise<CourseEntity>;
+  create(model: CourseRespositoryCreateParams): Promise<CourseEntity>;
+  update(model: CourseRespositoryUpdateParams): Promise<CourseEntity>;
   delete(model: CourseRespositoryDeleteParams): any;
 }
