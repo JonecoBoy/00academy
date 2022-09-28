@@ -35,7 +35,6 @@ import { DeleteCourseUseCase } from "./core/usecases/courses/delete-course/delet
 import { CourseRepositoryInterface } from "./core/providers/courses-repository.interface";
 import { CourseRepository } from "./infra/repositories/courses.repository";
 
-
 import { ListUsersInterface } from "./core/usecases/users/list-users/list-users.interface";
 import { ListUsersUseCase } from "./core/usecases/users/list-users/list-users.usecase";
 
@@ -57,6 +56,7 @@ import { UsersRepository } from "./infra/repositories/users.repository";
 import { AuthLoginInterface } from "./core/usecases/auth/login-auth.interface";
 import { AuthLoginUseCase } from "./core/usecases/auth/login-auth.usecase";
 import mongoose from "mongoose";
+
 import { SearchCustomUserInterface } from "./core/usecases/users/search-custom-user/search-custom-user.interface";
 import { SearchCustomUserUseCase } from "./core/usecases/users/search-custom-user/search-custom-user.usecase";
 

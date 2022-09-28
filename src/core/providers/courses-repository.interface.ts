@@ -5,17 +5,22 @@ export type CourseRespositorySearchParams = {
 };
 
 export type CourseRespositoryCreateParams = {
-  dataInicio: string;
-  descricao: string;
+  name: string;
+  slug: string;
   status: boolean;
-  students?:string[];
+  users?:string[];
+  lessons?:string[];
+  released_at?:string;
 };
 
 export type CourseRespositoryUpdateParams = {
   id:string;
-  descricao?: string;
+  name?: string;
+  slug?: string;
   status?: boolean;
-  students?:string[];
+  users?:string[];
+  lessons?:string[];
+  released_at?:string;
 };
 
 export type CourseRespositoryDeleteParams = {
@@ -25,7 +30,7 @@ export type CourseRespositoryDeleteParams = {
 export interface CourseRepositoryInterface {
   list(model: CourseRespositorySearchParams): Promise<Array<CourseEntity>>;
   search(model: CourseRespositorySearchParams): Promise<CourseEntity>;
-  create(model: CourseRespositoryCreateParams): Promise<CourseEntity>;
+  create(model: CourseRespositoryCreateParams): Promise<boolean>;
   update(model: CourseRespositoryUpdateParams): Promise<CourseEntity>;
-  delete(model: CourseRespositoryDeleteParams): any;
+  delete(model: CourseRespositoryDeleteParams): Promise<any>;
 }

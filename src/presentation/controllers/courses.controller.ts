@@ -34,6 +34,7 @@ import { DeleteCourseDto } from "../../presentation/dtos/courses/delete-course.d
 import { ValidateDtoMiddleware } from "../middlewares/validate-dto.middleware";
 import { AuthDtoMiddleware } from "../../presentation/middlewares/auth-dto.middleware";
 import { AuthAdminDtoMiddleware } from "../middlewares/auth-admin-dto.middleware";
+import * as dayjs from 'dayjs'
 
 @controller(`/courses`)
 export class CoursesController
@@ -68,7 +69,7 @@ export class CoursesController
     @queryParam() query: ListCourseDto.Query
   ): Promise<interfaces.IHttpActionResult> {
 
-
+    try{
     const result: any[] = await this._listCourseservice.execute({});
 
     if (!result){
@@ -79,6 +80,14 @@ export class CoursesController
 
     return this.json(result);
   }
+  catch (error) {
+    if (error.name === `BusinessError`) {
+      return this.badRequest(error.message);
+    }
+
+    return this.internalServerError(error.message);
+  }
+  }
 
   //listar um curso apenas
   @httpGet(`/:id`)
@@ -87,7 +96,7 @@ export class CoursesController
   ): Promise<interfaces.IHttpActionResult> {
     try {
 
-      const result = this._searchCourseService.execute({id});
+      const result = await this._searchCourseService.execute({id});
 
       return this.json(result);
     } catch (error) {
@@ -109,14 +118,26 @@ export class CoursesController
   public async createCourse(
     @requestBody() body: CreateCourseDto.Body
   ): Promise<interfaces.IHttpActionResult> {
-    const result = this._createCourseervice.execute({
-      dataInicio: body.dataInicio,
-      descricao: body.descricao,
+    try{
+    const result = await this._createCourseervice.execute({
+      name: body.name,
+      slug: body.slug,
       status: body.status,
       students: body.students,
+      lessons: body.lessons,
+      released_at: body.released_at,
     });
 
     return this.json(result);
+  }
+
+catch (error) {
+  if (error.name === `BusinessError`) {
+    return this.badRequest(error.message);
+  }
+
+  return this.internalServerError(error.message);
+}
   }
 
     //editar um curso
@@ -132,10 +153,13 @@ export class CoursesController
     @requestBody() body: UpdateCourseDto.Body
   ): Promise<interfaces.IHttpActionResult> {
     try{
-      const descricao = body.descricao;
+      const name = body.name;
+      const slug = body.slug;
       const status:boolean = body.status;
       const students:string[]=body.students;
-      const result = this._updateCourseService.execute({id,descricao,status,students});
+      const released_at = dayjs(body.released_at).format('YYYY-MM-DDTHH:mm:ssZ[Z]');
+      const lessons =null;
+      const result = await this._updateCourseService.execute({id,name,slug,status,students,lessons,released_at});
       return this.json(result);
 
     }
@@ -157,11 +181,16 @@ export class CoursesController
       ValidateDtoMiddleware(DeleteCourseDto.Params, `params`),
     )
     public async Delete(
-      @requestParam(`id`) id: string,
+      @requestParam(`id`) id: DeleteCourseDto.Params
     ): Promise<interfaces.IHttpActionResult> {
       try{
-        const result = this._deleteCourseService.execute({id});
-        return this.json(result);
+        const result = await this._deleteCourseService.execute(id);
+        if(!result){
+          throw new Error (`Course does not Exists`);
+        }
+        else{
+        return this.json(`Course ID ${id} successfully deleted`);
+        }
   
       }
       catch (error) {

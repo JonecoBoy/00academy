@@ -20,9 +20,9 @@ export class DeleteCourseUseCase implements DeleteCourseInterface {
     this._CourseRepository = CourseRepository;
   }
   
-  execute(model: any): any {
+  async execute(model: DeleteCourseUseCaseParams): Promise<any> {
 
-    const result = this._CourseRepository.delete(model);
+    const result = await this._CourseRepository.delete(model);
 
   return result;
   }

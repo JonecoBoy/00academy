@@ -1,12 +1,14 @@
 import { CourseEntity } from "../../../entities/course.entity";
 
 export class CreateCourseUseCaseParams {
-  descricao: string;
-  dataInicio: string;
+  name: string;
+  slug: string;
   status: boolean;
   students?: string[];
+  lessons?: string[];
+  released_at?: string;
 }
 
 export interface CreateCourseInterface {
-  execute(model: CreateCourseUseCaseParams): Promise<CourseEntity>;
+  execute(model: CreateCourseUseCaseParams): Promise<boolean>;
 }

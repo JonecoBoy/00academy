@@ -7,6 +7,7 @@ import {
 import { BusinessError } from "../../../errors/business.error";
 import { CourseRepositoryInterface } from "@core/providers/courses-repository.interface";
 import TYPES from "../../../../types";
+import { CourseEntity } from "@core/entities/course.entity";
 
 @injectable()
 export class UpdateCourseUseCase implements UpdateCourseInterface {
@@ -19,9 +20,18 @@ export class UpdateCourseUseCase implements UpdateCourseInterface {
     this._CourseRepository = CourseRepository;
   }
   
-  execute(model: any): any {
+  async execute(model: UpdateCourseUseCaseParams): Promise<CourseEntity>  {
 
-    const result = this._CourseRepository.update(model);
+        
+    const result = await this._CourseRepository.update({
+      id: model.id,
+      name: model.name,
+      slug: model.slug,
+      status: model.status,
+      users:model.students,
+      lessons:model.lessons,
+      released_at: model.released_at
+    });
 
   return result;
   }

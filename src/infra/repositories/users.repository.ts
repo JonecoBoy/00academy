@@ -53,7 +53,6 @@ export class UsersRepository implements UsersRepositoryInterface {
 
 
   async create(model: UsersRespositoryCreateParams): Promise<boolean> {
-    let addedUser;
     try{
       //todo meter o entity to model ao inves de discretizar tudo.
       const now = dayjs().format('YYYY-MM-DDTHH:mm:ssZ[Z]');
@@ -88,7 +87,6 @@ export class UsersRepository implements UsersRepositoryInterface {
   }
 
   async search(model: UsersRespositorySearchParams): Promise<UserEntity> {
-    // pesquisa por UUID
     let result=[];
     try{
       const data = await this._userModel.findOne({_id:model.id}).lean().exec();
@@ -137,21 +135,22 @@ export class UsersRepository implements UsersRepositoryInterface {
   async update(model: UsersRespositoryUpdateParams): Promise<UserEntity> {
     // throw new Error(`Method not implemented.`);
     try{
-      // TODO dar um update MANY nos cursos que estiverem no array
       const  {id, ...params} = model;
+      const now = dayjs().format('YYYY-MM-DDTHH:mm:ssZ[Z]');
       const data = await this._userModel.updateOne({_id:new ObjectId(id)},
         {"$set": 
           {...params,
+            updated_at:now,
           }
         }).lean().exec();
         if(!data){
           throw new Error(`Error Editing User.`);
         }else{
-          if(data.acknowledged == false){
-            throw new BusinessError(`Error Editing User.`);
+          if(data.matchedCount<1){
+            throw new BusinessError(`User does not exists.`);
           }else{
             // caso tenha retornado ack como update completo
-            const findUpdated = await this._userModel.findOne({uuid:id}).lean().exec();
+            const findUpdated = await this._userModel.findOne({_id:new ObjectId(id)}).lean().exec();
             const result = this._userAdapter.modelToEntity(findUpdated)
             return result;
           }
@@ -169,7 +168,12 @@ export class UsersRepository implements UsersRepositoryInterface {
     // todo add deleted_at para fazer softdelete
     try{
       const data = await this._userModel.deleteOne({_id:id})
-      return data.acknowledged;
+      if(data.deletedCount >0){
+        return data.acknowledged;
+      }else{
+        return false
+      }
+      
   }
     catch(error){
     throw new BusinessError(error);

@@ -20,14 +20,16 @@ export class CreateCourseUseCase implements CreateCourseInterface {
     this._CourseRepository = CourseRepository;
   }
 
-  async execute(model: CreateCourseUseCaseParams): Promise<CourseEntity> {
+  async execute(model: CreateCourseUseCaseParams): Promise<boolean> {
     
 
     const result = await this._CourseRepository.create({
-      dataInicio: model.dataInicio,
-      descricao: model.descricao,
+      name: model.name,
+      slug: model.slug,
       status: model.status,
-      students:model.students,
+      users:model.students,
+      lessons:model.lessons,
+      released_at: model.released_at
     });
 
     return result;

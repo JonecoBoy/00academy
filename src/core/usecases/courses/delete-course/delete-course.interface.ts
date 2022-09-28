@@ -5,5 +5,5 @@ export class DeleteCourseUseCaseParams {
 }
 
 export interface DeleteCourseInterface {
-  execute(model: DeleteCourseUseCaseParams): CourseEntity;
+  execute(model: DeleteCourseUseCaseParams): Promise<any>;
 }

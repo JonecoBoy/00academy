@@ -7,16 +7,29 @@ export namespace UpdateCourseDto {
   }
 
   export class Body {
-    @IsOptional()
     @IsString()
-    descricao?: string;
-
     @IsOptional()
+    name: string;
+
+    @IsString()
+    @IsOptional()
+    slug: string;
+
     @IsBoolean()
-    status?: boolean;
-
     @IsOptional()
+    status: boolean;
+
     @IsArray()
-    students?: string[];
+    @IsOptional()
+    students: Array<string>;
+
+    @IsArray()
+    @IsOptional()
+    lessons: Array<string>;
+
+    @IsString()
+    @IsOptional()
+    released_at: string;
+
   }
 }
