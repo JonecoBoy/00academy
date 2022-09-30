@@ -38,10 +38,14 @@ export class CreateUserUseCase implements CreateUserInterface {
       status: model.status,
     });
     
+    
     if(result){
       // caso tenha dado certo enviar email
+
+      const htmlContent = `<h1>Ola administrador</h1><p> o usuario model.email acabou de se cadastrar no site</p>`
+
       const emailParams:SendEmailParams = {
-        message: "mensagem",
+        message: htmlContent,
         subject: "Novo usuário cadastrado",
         fromAddress: process.env.AWS_REGISTERED_EMAIL,
         toAddress: process.env.AWS_REGISTERED_EMAIL
