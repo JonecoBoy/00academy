@@ -43,7 +43,7 @@ export class CreateUserUseCase implements CreateUserInterface {
       const emailParams:SendEmailParams = {
         message: "mensagem",
         subject: "Novo usuário cadastrado",
-        fromAddress: process.env.NOREPLY_EMAIL,
+        fromAddress: process.env.AWS_REGISTERED_EMAIL,
         toAddress: process.env.AWS_REGISTERED_EMAIL
     }
       const response = this._EmailService.send(emailParams)
