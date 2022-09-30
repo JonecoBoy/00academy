@@ -60,6 +60,11 @@ import mongoose from "mongoose";
 import { SearchCustomUserInterface } from "./core/usecases/users/search-custom-user/search-custom-user.interface";
 import { SearchCustomUserUseCase } from "./core/usecases/users/search-custom-user/search-custom-user.usecase";
 
+
+import { EmailServiceInterface } from "./core/providers/email-service.interface";
+import { EmailService } from "./infra/services/email.service";
+
+
 const PORT = process.env.PORT || 3001;
 
 const container = new Container();
@@ -114,10 +119,13 @@ export class App {
       .bind<UsersRepositoryInterface>(TYPES.UsersRepositoryInterface)
       .to(UsersRepository);
 
-
   container
   .bind<AuthLoginInterface>(TYPES.AuthLoginInterface)
   .to(AuthLoginUseCase);
+
+  container.bind<EmailServiceInterface>(TYPES.EmailServiceInterface)
+  .to(EmailService);
+
     container
       .bind<express.RequestHandler>(TYPES.CustomMiddleware)
       .toConstantValue(CustomMiddleware);

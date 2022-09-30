@@ -20,6 +20,8 @@ const TYPES = {
   UsersRepositoryInterface: Symbol.for(`UsersRepositoryInterface`),
 
   CustomMiddleware: Symbol.for(`CustomMiddleware`),
+
+  EmailServiceInterface: Symbol.for("EmailServiceInterface"),
 };
 
 export default TYPES;

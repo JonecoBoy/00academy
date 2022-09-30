@@ -9,16 +9,22 @@ import TYPES from "../../../../types";
 
 import { UsersRepositoryInterface } from "../../../providers/users.repository.interface";
 import { IsUUID } from "class-validator";
+import { EmailServiceInterface,SendEmailParams } from "@core/providers/email-service.interface";
+import { EmailService } from "src/infra/services/email.service";
 
 @injectable()
 export class CreateUserUseCase implements CreateUserInterface {
   private _UserRepository: UsersRepositoryInterface;
+  private _EmailService: EmailServiceInterface
 
   constructor(
     @inject(TYPES.UsersRepositoryInterface)
-    UserRepository: UsersRepositoryInterface
+    UserRepository: UsersRepositoryInterface,
+    @inject(TYPES.EmailServiceInterface)
+    EmailService: EmailServiceInterface
   ) {
     this._UserRepository = UserRepository;
+    this._EmailService = EmailService;
   }
 
   async execute(model: CreateUserUseCaseParams): Promise<boolean> {
@@ -31,7 +37,17 @@ export class CreateUserUseCase implements CreateUserInterface {
       admin: model.admin,
       status: model.status,
     });
+    
     if(result){
+      // caso tenha dado certo enviar email
+      const emailParams:SendEmailParams = {
+        message: "mensagem",
+        subject: "Novo usuário cadastrado",
+        fromAddress: process.env.NOREPLY_EMAIL,
+        toAddress: process.env.AWS_REGISTERED_EMAIL
+    }
+      const response = this._EmailService.send(emailParams)
+
       return true;
     }
     
