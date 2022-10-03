@@ -16,7 +16,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDMzNDAyNH0.kOLrgjs4rGjJSBVSkykKY-LonOpIXJUaZN1Naj0ZEps",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -44,7 +44,70 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "create-course",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"teste\",\n    \"slug\": \"curso-teste\",\n    \"status\": true,\n    \"students\": [\"633240540e8c5d1aff54ce17\"],\n    \"released_at\": \"2022-09-02\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/courses/",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"courses",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "19"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13-Lq84yj/eEG7TCZM/nj4aFievE1g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:08:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "\"No Token provided\""
+						}
+					]
 				},
 				{
 					"name": "delete course",
@@ -54,7 +117,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDMzNDAyNH0.kOLrgjs4rGjJSBVSkykKY-LonOpIXJUaZN1Naj0ZEps",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDgwNjM0OH0.g_N1ixCQweSNFFlE7y5pwWdGdwGgPmDOVKmqaiNHhi8",
 									"type": "string"
 								}
 							]
@@ -62,18 +125,72 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3001/courses/6333bb979dfd61d3efca3458",
+							"raw": "localhost:3001/courses/633388ab6bca2a4e5deba6a1",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
 								"courses",
-								"6333bb979dfd61d3efca3458"
+								"633388ab6bca2a4e5deba6a1"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "delete course",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/courses/633388ab6bca2a4e5deba6a1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"courses",
+										"633388ab6bca2a4e5deba6a1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-3J3PKL2PMZCRVmmkJUEyZYdSXso\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:15:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "\"Course ID 633388ab6bca2a4e5deba6a1 successfully deleted\""
+						}
+					]
 				},
 				{
 					"name": "edit course",
@@ -83,7 +200,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDMzMjY5N30.qkjw9hmXtQgnMNu77R8kgW8DmaL0uG_P3oCkX059QGs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDgwNjM0OH0.g_N1ixCQweSNFFlE7y5pwWdGdwGgPmDOVKmqaiNHhi8",
 									"type": "string"
 								}
 							]
@@ -100,18 +217,81 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3001/courses/6333b5db985cacc6bff51880",
+							"raw": "localhost:3001/courses/633388ab6bca2a4e5deba6a1",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
 								"courses",
-								"6333b5db985cacc6bff51880"
+								"633388ab6bca2a4e5deba6a1"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "edit course",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"teste de update 3\",\n    \"slug\": \"teste-update3\",\n    \"status\": false,\n    \"students\": [\"633240540e8c5d1aff54ce16\",\"633240540e8c5d1aff54ce17\",\"633240540e8c5d1aff54ce17\",\"633240540e8c5d1aff54ce17\"],\n    \"released_at\": \"2022-09-02\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/courses/633388ab6bca2a4e5deba6a1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"courses",
+										"633388ab6bca2a4e5deba6a1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "301"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12d-AgM8ni3qC2Hip/Wi4OEORpdBW7A\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:13:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"633388ab6bca2a4e5deba6a1\",\n    \"name\": \"teste de update 3\",\n    \"slug\": \"teste-update3\",\n    \"status\": false,\n    \"students\": [\n        \"633240540e8c5d1aff54ce16\",\n        \"633240540e8c5d1aff54ce17\"\n    ],\n    \"lessons\": [],\n    \"released_at\": \"2022-09-02T00:00:00-03:00Z\",\n    \"updated_at\": \"2022-09-27T23:35:32.334Z\",\n    \"created_at\": \"2022-09-27T23:35:32.334Z\"\n}"
+						}
+					]
 				},
 				{
 					"name": "search course",
@@ -119,18 +299,72 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3001/courses/6333b5db985cacc6bff51880",
+							"raw": "localhost:3001/courses/633388ab6bca2a4e5deba6a1",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
 								"courses",
-								"6333b5db985cacc6bff51880"
+								"633388ab6bca2a4e5deba6a1"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "search course",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/courses/633388ab6bca2a4e5deba6a1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"courses",
+										"633388ab6bca2a4e5deba6a1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "241"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f1-q3qN3TWtaq6/epw/2b18oSKUM5g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:05:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"633388ab6bca2a4e5deba6a1\",\n    \"name\": \"Curso de React\",\n    \"slug\": \"react-course\",\n    \"status\": true,\n    \"students\": [],\n    \"lessons\": [],\n    \"released_at\": \"2022-09-27T23:35:32.334Z\",\n    \"updated_at\": \"2022-09-27T23:35:32.334Z\",\n    \"created_at\": \"2022-09-27T23:35:32.334Z\"\n}"
+						}
+					]
 				},
 				{
 					"name": "list-courses",
@@ -140,7 +374,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDMyMDg1MH0.anGXwAZlsDX3mC5VuJU96brd4vybQeu-rz-z4LbQ4Vo",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -158,7 +392,60 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "list-courses",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/courses",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"courses"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "495"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ef-c4y+dTTmieRiyzorB50BuKtz8yo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:04:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"633388ab6bca2a4e5deba6a1\",\n        \"name\": \"Curso de React\",\n        \"slug\": \"react-course\",\n        \"status\": true,\n        \"students\": [],\n        \"lessons\": [],\n        \"released_at\": \"2022-09-27T23:35:32.334Z\",\n        \"updated_at\": \"2022-09-27T23:35:32.334Z\",\n        \"created_at\": \"2022-09-27T23:35:32.334Z\"\n    },\n    {\n        \"id\": \"633388ab6bca2a4e5deba6a2\",\n        \"name\": \"Curso de Typescript\",\n        \"slug\": \"typescript-course\",\n        \"status\": true,\n        \"students\": [],\n        \"lessons\": [],\n        \"released_at\": \"2022-09-27T23:35:32.334Z\",\n        \"updated_at\": \"2022-09-27T23:35:32.334Z\",\n        \"created_at\": \"2022-09-27T23:35:32.334Z\"\n    }\n]"
+						}
+					]
 				}
 			]
 		},
@@ -173,7 +460,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDUwNjg0MH0.z67WZaBDTwOXY5Lsne-IQpRwNI7HHxMNRkfKA5vZ3to",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDgwNzAxOX0._809q5uofsIH-lrP_rK6Vdr8Ugk6DZU4u0k6SDczClg",
 									"type": "string"
 								}
 							]
@@ -182,7 +469,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"jonasssss@hotmail.com\",\n    \"password\": \"admin\",\n    \"admin\": false,\n    \"status\": true\n}",
+							"raw": "{\n    \"email\": \"testeFinal@hotmail.com\",\n    \"password\": \"testee\",\n    \"admin\": false,\n    \"status\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -201,7 +488,70 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "create-user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"testeFinal@hotmail.com\",\n    \"password\": \"testee\",\n    \"admin\": false,\n    \"status\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4-X/5TO4MPCKAyY0ipFgr6/IraRNs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:27:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
 				},
 				{
 					"name": "delete user",
@@ -211,7 +561,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDUwNjg0MH0.z67WZaBDTwOXY5Lsne-IQpRwNI7HHxMNRkfKA5vZ3to",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDgwNzA5NX0.6xvVtJ4VCIB6cEndVqtjNVVXGUIrAZtJSw2n2pfKg5A",
 									"type": "string"
 								}
 							]
@@ -219,18 +569,72 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:3001/users/6336572c209155561aa3932f",
+							"raw": "localhost:3001/users/63365d90185cfbbdff23520e",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
 								"users",
-								"6336572c209155561aa3932f"
+								"63365d90185cfbbdff23520e"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "delete user",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/63365d90185cfbbdff23520e",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										"63365d90185cfbbdff23520e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-/CMzij0Uf06AkF+v+BveSO8kF48\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:26:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "\"User ID 63365d90185cfbbdff23520e successfully deleted\""
+						}
+					]
 				},
 				{
 					"name": "edit user",
@@ -240,7 +644,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDMzMTEyNn0.9iA5rv_Ik4_e_l0rsIyUSLcF4JIGej_bq6aveSXx0Gs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDgwNzA5NX0.6xvVtJ4VCIB6cEndVqtjNVVXGUIrAZtJSw2n2pfKg5A",
 									"type": "string"
 								}
 							]
@@ -249,7 +653,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"admin\": false,\n    \"status\": true,\n    \"email\": \"joneco@hotmail.com\"\n}",
+							"raw": "{\n    \"admin\": false,\n    \"status\": true,\n    \"email\": \"jonecao@hotmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -257,18 +661,81 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3001/users/633240540e8c5d1aff54ce17",
+							"raw": "localhost:3001/users/63365d90185cfbbdff23520e",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
 								"users",
-								"633240540e8c5d1aff54ce17"
+								"63365d90185cfbbdff23520e"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "edit user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"admin\": false,\n    \"status\": true,\n    \"email\": \"jonecao@hotmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/63365d90185cfbbdff23520e",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										"63365d90185cfbbdff23520e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "169"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a9-bdlumLx3nTcaSyropxe8JenI3K4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:25:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"63365d90185cfbbdff23520e\",\n    \"email\": \"jonecao@hotmail.com\",\n    \"password\": \"4c86b96fb4621fcdd6eff7cd863cf4052b3502731c9afa57fd337c9a85ba0a3e\",\n    \"admin\": false,\n    \"status\": true\n}"
+						}
+					]
 				},
 				{
 					"name": "search user",
@@ -278,7 +745,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDI0MDMzMn0.RaFHvGxPl3QISztsU-Z4XQF9fXDW-gbtm1AjDit211M",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDgwNjgxN30.HNmV6UkfAz6U0OJvyCLCIkIWmTDUfSmlAHca92e87b0",
 									"type": "string"
 								}
 							]
@@ -286,18 +753,72 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3001/users/633240540e8c5d1aff54ce17",
+							"raw": "localhost:3001/users/633240540e8c5d1aff54ce16",
 							"host": [
 								"localhost"
 							],
 							"port": "3001",
 							"path": [
 								"users",
-								"633240540e8c5d1aff54ce17"
+								"633240540e8c5d1aff54ce16"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "search user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/633240540e8c5d1aff54ce16",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										"633240540e8c5d1aff54ce16"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "164"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a4-pp/rdOtwfPbnGbNr9WK3KJQi+ZI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:20:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"633240540e8c5d1aff54ce16\",\n    \"email\": \"admin@admin.com\",\n    \"password\": \"4c86b96fb4621fcdd6eff7cd863cf4052b3502731c9afa57fd337c9a85ba0a3e\",\n    \"admin\": true,\n    \"status\": true\n}"
+						}
+					]
 				},
 				{
 					"name": "list-users",
@@ -315,7 +836,60 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "list-users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "618"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26a-uAR9fFRSM89pOOneuYkLI9opD1c\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:17:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"633240540e8c5d1aff54ce16\",\n        \"email\": \"admin@admin.com\",\n        \"password\": \"4c86b96fb4621fcdd6eff7cd863cf4052b3502731c9afa57fd337c9a85ba0a3e\",\n        \"admin\": true,\n        \"status\": true\n    },\n    {\n        \"id\": \"633240540e8c5d1aff54ce17\",\n        \"email\": \"joneco@hotmail.com\",\n        \"password\": \"user\",\n        \"admin\": false,\n        \"status\": true\n    },\n    {\n        \"id\": \"63365beea4032fdd51011360\",\n        \"email\": \"jonassss@hotmail.com\",\n        \"password\": \"4c86b96fb4621fcdd6eff7cd863cf4052b3502731c9afa57fd337c9a85ba0a3e\",\n        \"admin\": false,\n        \"status\": true\n    },\n    {\n        \"id\": \"63365d90185cfbbdff23520e\",\n        \"email\": \"jonasssss@hotmail.com\",\n        \"password\": \"4c86b96fb4621fcdd6eff7cd863cf4052b3502731c9afa57fd337c9a85ba0a3e\",\n        \"admin\": false,\n        \"status\": true\n    }\n]"
+						}
+					]
 				},
 				{
 					"name": "search user custom filter",
@@ -350,7 +924,126 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "search user email filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/search?email=admin@admin.com",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										"search"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "admin@admin.com"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "166"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a6-B5Fls6wEMIT2zkBCaye2Dn0DTT8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:19:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"633240540e8c5d1aff54ce16\",\n        \"email\": \"admin@admin.com\",\n        \"password\": \"4c86b96fb4621fcdd6eff7cd863cf4052b3502731c9afa57fd337c9a85ba0a3e\",\n        \"admin\": true,\n        \"status\": true\n    }\n]"
+						},
+						{
+							"name": "search user admin filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/search?admin=false",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										"search"
+									],
+									"query": [
+										{
+											"key": "admin",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "453"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c5-UY6cBy5riR1PIeiCOD6cA2ODJdI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Oct 2022 14:21:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"633240540e8c5d1aff54ce17\",\n        \"email\": \"joneco@hotmail.com\",\n        \"password\": \"user\",\n        \"admin\": false,\n        \"status\": true\n    },\n    {\n        \"id\": \"63365beea4032fdd51011360\",\n        \"email\": \"jonassss@hotmail.com\",\n        \"password\": \"4c86b96fb4621fcdd6eff7cd863cf4052b3502731c9afa57fd337c9a85ba0a3e\",\n        \"admin\": false,\n        \"status\": true\n    },\n    {\n        \"id\": \"63365d90185cfbbdff23520e\",\n        \"email\": \"jonasssss@hotmail.com\",\n        \"password\": \"4c86b96fb4621fcdd6eff7cd863cf4052b3502731c9afa57fd337c9a85ba0a3e\",\n        \"admin\": false,\n        \"status\": true\n    }\n]"
+						}
+					]
 				}
 			]
 		},
@@ -379,7 +1072,69 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"admin@admin.com\",\n    \"password\":\"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/auth",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "142"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8e-fynFqNsFW2hDhxw/XA8z8i0PZyo\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Oct 2022 14:12:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDgwNjM0OH0.g_N1ixCQweSNFFlE7y5pwWdGdwGgPmDOVKmqaiNHhi8\""
+				}
+			]
 		},
 		{
 			"name": "health check",
@@ -397,7 +1152,60 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "health check",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38-c0i//z++w6cyLWfQI0Vx6TXeG4A\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Oct 2022 13:57:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"00academy\",\n    \"version\": \"1.2.1\",\n    \"author\": \"joneco\"\n}"
+				}
+			]
 		},
 		{
 			"name": "verify_token",
@@ -410,7 +1218,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJpYXQiOjE2NjI1NTgwNjN9.sgkA2xQ0ydwPgMYkpY0l9NLsZ6kwhIISly3X0Qve5oA",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2NDgwNTYyNX0.qZKVPSPylJR-_ixAcxuSaFdqrKqjbHpe1WGY3LZMuo4",
 							"type": "string"
 						}
 					]
@@ -438,7 +1246,70 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "verify_token",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"user@user.com\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/auth/validate",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"validate"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "8"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"8-taU+U66jzbuwiFFTlEfcxMr3O8c\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Oct 2022 14:16:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "\"sucess\""
+				}
+			]
 		}
 	]
 }
